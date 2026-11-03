@@ -26,7 +26,11 @@
       tokenClient.requestAccessToken({ prompt: token ? '' : 'select_account' });
     });
   }
-  function showLogin() { const o = document.getElementById('login-overlay'); if (o) o.style.display = 'flex'; }
+  function showLogin() {
+    if (isDemoMode) return;
+    const o = document.getElementById('login-overlay');
+    if (o) o.style.display = 'flex';
+  }
   window.gemSignIn = async function (btn) {
     const msg = document.getElementById('login-msg');
     const label = document.getElementById('login-btn-text');
@@ -37,12 +41,105 @@
       await ensureToken();
       const u = await (await fetch('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: 'Bearer ' + token } })).json();
       userEmail = u.email || '';
+      try { localStorage.removeItem('gem_skip_login'); } catch (e) {}
       document.getElementById('login-overlay').style.display = 'none';
       loginResolve();
     } catch (e) { if (msg) msg.innerText = e.message; }
     if (btn) btn.disabled = false;
     if (label) label.innerText = 'Continue with Google';
   };
+
+  /* ---------- Offline / Skip Sign-in Mode ---------- */
+  let isDemoMode = false;
+
+  function makeLocalSheet(name, initialRows) {
+    let rows = initialRows ? initialRows.map(r => r.slice()) : [];
+    const save = () => {
+      try {
+        let all = JSON.parse(localStorage.getItem('gem_demo_sheets') || '{}');
+        all[name] = rows;
+        localStorage.setItem('gem_demo_sheets', JSON.stringify(all));
+      } catch (e) {}
+    };
+    const W = () => rows.reduce((m, r) => Math.max(m, r.length), 0);
+    const put = (r, c, vals) => {
+      vals = vals.map(row => row.map(norm));
+      vals.forEach((row, i) => {
+        while (rows.length < r + i) rows.push([]);
+        row.forEach((v, j) => {
+          const t = rows[r - 1 + i];
+          while (t.length < c + j) t.push('');
+          t[c - 1 + j] = v;
+        });
+      });
+      save();
+    };
+    const sh = {
+      name,
+      rows,
+      getDataRange: () => ({ getValues: () => { const w = W(); return rows.length ? rows.map(r => { const x = r.slice(); while (x.length < w) x.push(''); return x; }) : [['']]; } }),
+      getLastRow: () => rows.length,
+      getLastColumn: () => W(),
+      getRange: (r, c, nr, nc) => {
+        nr = nr || 1; nc = nc || 1;
+        return {
+          getValues: () => Array.from({ length: nr }, (_, i) => Array.from({ length: nc }, (_, j) => { const v = (rows[r - 1 + i] || [])[c - 1 + j]; return v === undefined ? '' : v; })),
+          setValue: v => put(r, c, Array.from({ length: nr }, () => Array(nc).fill(v))),
+          setValues: v => put(r, c, v)
+        };
+      },
+      appendRow: vals => put(rows.length + 1, 1, [vals]),
+      deleteRow: i => { rows.splice(i - 1, 1); save(); },
+      clear: () => { rows.length = 0; save(); },
+      setFrozenRows: () => {},
+      insertColumnBefore: c => { rows.forEach(r => { if (r.length >= c - 1) r.splice(c - 1, 0, ''); }); save(); },
+      insertColumnAfter: c => { rows.forEach(r => { if (r.length >= c) r.splice(c, 0, ''); }); save(); }
+    };
+    return sh;
+  }
+
+  function initDemoSpreadsheet() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem('gem_demo_sheets') || 'null'); } catch (e) {}
+    const byName = {};
+    if (saved && Object.keys(saved).length) {
+      Object.keys(saved).forEach(n => { byName[n] = makeLocalSheet(n, saved[n]); });
+      SS = {
+        getUrl: () => 'https://docs.google.com/spreadsheets/d/offline-demo/edit',
+        getSheetByName: n => byName[n] || (byName[n] = makeLocalSheet(n)),
+        insertSheet: n => (byName[n] = makeLocalSheet(n))
+      };
+    } else {
+      byName['Purchases'] = makeLocalSheet('Purchases');
+      byName['Sales'] = makeLocalSheet('Sales');
+      SS = {
+        getUrl: () => 'https://docs.google.com/spreadsheets/d/offline-demo/edit',
+        getSheetByName: n => byName[n] || (byName[n] = makeLocalSheet(n)),
+        insertSheet: n => (byName[n] = makeLocalSheet(n))
+      };
+      if (typeof window.seedInitialSampleData === 'function') {
+        try { window.seedInitialSampleData(); } catch (e) { console.error('Seed error:', e); }
+      }
+    }
+  }
+
+  window.gemSkipSignIn = function () {
+    isDemoMode = true;
+    userEmail = 'demo@diamondledger.local';
+    try { localStorage.setItem('gem_skip_login', 'true'); } catch (e) {}
+    const o = document.getElementById('login-overlay');
+    if (o) o.style.display = 'none';
+    initDemoSpreadsheet();
+    loginResolve();
+  };
+
+  // Auto-skip sign-in if requested via query or prior selection
+  try {
+    const shouldAutoSkip = location.search.includes('skip') || location.search.includes('demo') || localStorage.getItem('gem_skip_login') === 'true';
+    if (shouldAutoSkip) {
+      setTimeout(() => { if (!token && !isDemoMode) window.gemSkipSignIn(); }, 40);
+    }
+  } catch (e) {}
 
   /* ---------- Sheets API helper ---------- */
   async function api(path, opts) {
@@ -142,6 +239,11 @@
   let chain = Promise.resolve();
 
   async function invoke(name, args) {
+    if (isDemoMode) {
+      if (!SS) initDemoSpreadsheet();
+      let result = window[name].apply(null, args);
+      return result;
+    }
     if (!token) { showLogin(); await loginPromise; }
     const prev = ssId;
     if (name === 'setConnectedSpreadsheet') ssId = parseId(args[0]);
