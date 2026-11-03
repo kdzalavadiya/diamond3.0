@@ -52,24 +52,35 @@ function ensureBillPctColumn_(sheet) {
   if (lastRow > 1) sheet.getRange(2, col, lastRow - 1, 1).setValue(0);
 }
 
-/** Adds the "Type" column to an existing Purchases sheet if it is missing, and backfills empty cells. */
+/** Adds the "Type" column to an existing Purchases sheet if it is missing (placing before GIA No if present), and backfills empty cells. */
 function ensureTypeColumn_(sheet) {
   const lastCol = Math.max(sheet.getLastColumn(), 1);
   const headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
   let typeColIdx = -1;
+  let giaColIdx = -1;
   for (let c = 0; c < headers.length; c++) {
     const nk = normKey(headers[c]);
     if (nk === "type" || nk === "certtype" || nk === "certificatetype") {
       typeColIdx = c;
-      break;
+    }
+    if (nk === "giano" || nk === "gianumber") {
+      giaColIdx = c;
     }
   }
 
   if (typeColIdx === -1) {
-    const col = lastCol + 1;
-    sheet.getRange(1, col).setValue("Type");
-    const lastRow = sheet.getLastRow();
-    if (lastRow > 1) sheet.getRange(2, col, lastRow - 1, 1).setValue("IGI");
+    if (giaColIdx !== -1 && typeof sheet.insertColumnBefore === 'function') {
+      const col = giaColIdx + 1;
+      sheet.insertColumnBefore(col);
+      sheet.getRange(1, col).setValue("Type");
+      const lastRow = sheet.getLastRow();
+      if (lastRow > 1) sheet.getRange(2, col, lastRow - 1, 1).setValue("IGI");
+    } else {
+      const col = lastCol + 1;
+      sheet.getRange(1, col).setValue("Type");
+      const lastRow = sheet.getLastRow();
+      if (lastRow > 1) sheet.getRange(2, col, lastRow - 1, 1).setValue("IGI");
+    }
   } else {
     // If column already exists, backfill any empty cells with "IGI" so all stones have a valid Type
     const lastRow = sheet.getLastRow();
@@ -106,9 +117,9 @@ function assertOwner_() {
  * Standard headers matching the exact diamond business structure
  */
 const PURCHASE_HEADERS = [
-  "PurId", "GIA No", "Purchase Date", "From Name", "Size", "Shape", "Color", 
+  "PurId", "Status", "Type", "GIA No", "Purchase Date", "From Name", "Size", "Shape", "Color", 
   "Quality", "Flor.", "Cut", "Pol.", "Sym.", "Measur", "Less", "PerCarat", 
-  "DAmount", "Rate", "IndAmount", "BType", "PaymentDay", "Broker", "User", "Status", "BillPct", "Type"
+  "DAmount", "Rate", "IndAmount", "BType", "PaymentDay", "Broker", "User", "BillPct"
 ];
 
 const SALE_HEADERS = [
@@ -963,9 +974,9 @@ function seedInitialSampleData() {
     let saleId = "S-" + (2001 + idx);
 
     let pRow = [
-      purId, row[0], row[1], row[2], row[3], row[4], row[5], row[6],
+      purId, "SOLD", "IGI", row[0], row[1], row[2], row[3], row[4], row[5], row[6],
       row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14],
-      row[15], row[16], row[17], row[18], "", row[19], "SOLD", 0, "IGI"
+      row[15], row[16], row[17], row[18], "", row[19], 0
     ];
     pSheet.appendRow(pRow);
 
