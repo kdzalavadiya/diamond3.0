@@ -359,21 +359,73 @@
       background: var(--bg-body) !important;
       color: var(--text-primary) !important;
     }
-    [data-theme="dark"] .lg-card,
+    [data-theme="dark"] .lg-brand {
+      background: radial-gradient(900px 500px at 0% 0%, rgba(37,99,235,.35) 0%, transparent 60%), linear-gradient(160deg,#060c1c 0%,#0c1836 55%,#122756 100%) !important;
+      border-right: 1px solid var(--border-subtle);
+    }
+    [data-theme="dark"] .lg-panel {
+      background: var(--bg-body) !important;
+    }
+    [data-theme="dark"] .lg-card h2 {
+      color: #f8fafc !important;
+    }
+    [data-theme="dark"] .lg-mobile-logo {
+      color: #f8fafc !important;
+    }
+    [data-theme="dark"] .lg-sub {
+      color: #94a3b8 !important;
+    }
+    [data-theme="dark"] .lg-google {
+      background: var(--bg-card) !important;
+      color: var(--text-primary) !important;
+      border-color: var(--border-subtle) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+    }
+    [data-theme="dark"] .lg-google:hover {
+      background: var(--bg-hover) !important;
+      border-color: var(--brand-500) !important;
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25) !important;
+      color: #ffffff !important;
+    }
+    [data-theme="dark"] .lg-skip-btn {
+      background: rgba(30, 41, 59, 0.6) !important;
+      color: var(--brand-700) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] .lg-skip-btn:hover {
+      background: var(--bg-hover) !important;
+      border-color: var(--brand-500) !important;
+      color: #ffffff !important;
+    }
     [data-theme="dark"] .lg-steps {
       background: var(--bg-card) !important;
       border-color: var(--border-subtle) !important;
-      color: var(--text-primary) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
     }
-    [data-theme="dark"] .lg-btn {
-      background: var(--bg-card) !important;
-      border-color: var(--border-subtle) !important;
-      color: var(--text-primary) !important;
+    [data-theme="dark"] .lg-steps-t {
+      color: #64748b !important;
+    }
+    [data-theme="dark"] .lg-step {
+      color: #cbd5e1 !important;
+    }
+    [data-theme="dark"] .lg-step b {
+      background: #1e3a8a !important;
+      color: #93c5fd !important;
+      border: 1px solid #2563eb;
+    }
+    [data-theme="dark"] .lg-secure {
+      color: #94a3b8 !important;
     }
     [data-theme="dark"] .lg-note {
-      background: var(--bg-body) !important;
+      background: #0f172a !important;
       border-color: var(--border-subtle) !important;
-      color: var(--text-secondary) !important;
+      color: #94a3b8 !important;
+    }
+    [data-theme="dark"] .lg-note b {
+      color: #e2e8f0 !important;
+    }
+    [data-theme="dark"] .lg-credit {
+      color: #64748b !important;
     }
 
     /* Validation States */
@@ -1279,6 +1331,12 @@
     .lg-secure { display:flex; align-items:center; justify-content:center; gap:7px; margin-top:20px; font-size:12px; color:#64748b; }
     .lg-secure svg { width:14px; height:14px; stroke:#16a34a; }
     .lg-credit { margin-top:26px; font-size:11.5px; color:#94a3b8; }
+    .lg-skip-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 14px; font: inherit; font-size: 13px; font-weight: 600;
+      color: var(--brand-700); background: var(--brand-50); border: 1px solid var(--brand-200);
+      border-radius: 10px; cursor: pointer; transition: all .15s ease; }
+    .lg-skip-btn:hover { background: var(--brand-100); border-color: var(--brand-500); transform: translateY(-1px); }
+    .lg-top-actions { width: 100%; max-width: 392px; display: flex; justify-content: flex-end; margin-bottom: 12px; }
     @media (max-width: 880px) { .lg-brand { display:none; } .lg-mobile-logo { display:flex; } .lg-wrap { overflow-y:auto; } }
 
     /* ========================================================= */
@@ -1519,27 +1577,29 @@
         </div>
         <div class="form-row-2">
           <div class="form-group">
+            <label>Type *</label>
+            <input type="text" id="p-Type" name="Type" list="type-options" required style="font-weight:600;" placeholder="IGI" autocomplete="off" value="IGI">
+            <datalist id="type-options">
+              <option value="IGI">IGI</option>
+              <option value="GIA">GIA</option>
+              <option value="LOOSE">LOOSE</option>
+              <option value="OTHER">OTHER</option>
+            </datalist>
+          </div>
+          <div class="form-group">
             <label>GIA / Lot No *</label>
             <input type="text" id="p-GIANo" name="GIANo" placeholder="e.g. 793647470" required class="font-mono">
           </div>
+        </div>
+        <div class="form-row-2">
           <div class="form-group">
             <label>Purchase Date *</label>
             <input type="date" id="p-PurchaseDate" name="PurchaseDate" required>
           </div>
-        </div>
-        <div class="form-group">
-          <label>From Name (Supplier) *</label>
-          <input type="text" id="p-FromName" name="FromName" placeholder="e.g. KD or evermie" required>
-        </div>
-        <div class="form-group">
-          <label>Type *</label>
-          <input type="text" id="p-Type" name="Type" list="type-options" required style="font-weight:600;" placeholder="IGI" autocomplete="off" value="IGI">
-          <datalist id="type-options">
-            <option value="IGI">IGI</option>
-            <option value="GIA">GIA</option>
-            <option value="Loose">Loose</option>
-            <option value="other">other</option>
-          </datalist>
+          <div class="form-group">
+            <label>From Name (Supplier) *</label>
+            <input type="text" id="p-FromName" name="FromName" placeholder="e.g. KD or evermie" required>
+          </div>
         </div>
       </div>
 
@@ -1780,6 +1840,7 @@
             <tr>
               <th>PurId</th>
               <th>Status</th>
+              <th>Type</th>
               <th>GIA / Lot No</th>
               <th>Date</th>
               <th>Supplier (From Name)</th>
@@ -1797,7 +1858,6 @@
               <th>Days</th>
               <th>Broker</th>
               <th>Operator</th>
-              <th>Type</th>
             </tr>
           </thead>
           <tbody id="purchaseTableBody">
@@ -2163,6 +2223,7 @@
           <!-- TIER 2: EXACT FIELD HEADERS -->
           <tr>
             <!-- PURCHASE SECTION -->
+            <th>Type</th>
             <th>GIA No</th>
             <th>Pur. Date</th>
             <th>From Name</th>
@@ -2184,7 +2245,6 @@
             <th>Days</th>
             <th>Broker</th>
             <th>Pur. User</th>
-            <th>Type</th>
             <!-- SALE SECTION -->
             <th>Sale Date</th>
             <th>Client Name</th>
@@ -2274,6 +2334,9 @@
     </div>
 
     <div class="lg-panel">
+      <div class="lg-top-actions">
+        <button type="button" class="icon-btn" onclick="toggleTheme()" title="Toggle Theme" id="lg-theme-toggle" style="width:32px; height:32px; font-size:16px;">🌙</button>
+      </div>
       <div class="lg-card">
         <div class="lg-mobile-logo"><svg viewBox="0 0 48 48" width="30" height="30"><path d="M13 7h22l9 12L24 42 4 19z" fill="#2563eb" fill-opacity=".18" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round"/><path d="M4 19h40M17 7l7 12 7-12M24 42l-7-23M24 42l7-23" stroke="#2563eb" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-opacity=".9"/></svg>Diamond Ledger</div>
         <h2>Welcome back</h2>
@@ -2282,11 +2345,23 @@
           <svg width="19" height="19" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
           <span id="login-btn-text">Continue with Google</span>
         </button>
+
+        <div style="display:flex; align-items:center; gap:10px; margin:16px 0;">
+          <div style="flex:1; height:1px; background:var(--border-subtle);"></div>
+          <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-secondary); font-weight:600;">or</span>
+          <div style="flex:1; height:1px; background:var(--border-subtle);"></div>
+        </div>
+
+        <button type="button" class="lg-skip-btn" onclick="gemSkipSignIn()">
+          <span>Skip Sign-In &amp; Enter Main Page (Demo / Offline Mode)</span>
+          <svg style="width:14px; height:14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+
         <p id="login-msg" class="lg-msg"></p>
 
         <div class="lg-steps">
           <div class="lg-steps-t">How it works</div>
-          <div class="lg-step"><b>1</b><span>Sign in with your Google account</span></div>
+          <div class="lg-step"><b>1</b><span>Sign in with Google, or click Skip Sign-In for offline testing</span></div>
           <div class="lg-step"><b>2</b><span>Paste the Google Sheet link your owner gave you</span></div>
           <div class="lg-step"><b>3</b><span>Start recording purchases and sales</span></div>
         </div>
