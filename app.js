@@ -608,6 +608,8 @@ function toggleTheme(){
   try { localStorage.setItem('gem_theme', newTheme); } catch(e) {}
   const btn = el('btn-theme-toggle');
   if(btn) btn.innerHTML = newTheme === 'dark' ? '☀️' : '🌙';
+  const lgBtn = el('lg-theme-toggle');
+  if(lgBtn) lgBtn.innerHTML = newTheme === 'dark' ? '☀️' : '🌙';
 }
 
 function initTheme(){
@@ -616,6 +618,8 @@ function initTheme(){
   document.documentElement.setAttribute('data-theme', saved);
   const btn = el('btn-theme-toggle');
   if(btn) btn.innerHTML = saved === 'dark' ? '☀️' : '🌙';
+  const lgBtn = el('lg-theme-toggle');
+  if(lgBtn) lgBtn.innerHTML = saved === 'dark' ? '☀️' : '🌙';
 }
 
 // Help Modal
@@ -1043,6 +1047,7 @@ function renderPurchaseTable(customList) {
       <tr onclick="selectPurchaseRowForEdit(this.dataset.id)" data-id="${esc(row.PurId)}" class="hover-row">
         <td style="font-weight:700; color:var(--brand-600);">${esc(row.PurId)}</td>
         <td>${statusBadge}</td>
+        <td>${row.Type ? `<span class="type-badge type-${String(row.Type).toLowerCase().replace(/[^a-z]/g,'')}">${esc(row.Type)}</span>` : '<span class="muted">–</span>'}</td>
         <td style="font-weight:600;" class="font-mono">${esc(row.GIANo)}</td>
         <td>${esc(row.PurchaseDate)}</td>
         <td style="font-weight:600;">${esc(row.FromName)}</td>
@@ -1060,7 +1065,6 @@ function renderPurchaseTable(customList) {
         <td class="tabular-nums">${dash(row.PaymentDay)}</td>
         <td>${dash(row.Broker)}</td>
         <td>${dash(row.User)}</td>
-        <td>${row.Type ? `<span class="type-badge type-${String(row.Type).toLowerCase().replace(/[^a-z]/g,'')}">${esc(row.Type)}</span>` : '<span class="muted">–</span>'}</td>
       </tr>`;
   }).join('');
 
@@ -1150,12 +1154,12 @@ function filterPurchasesTable() {
 function exportPurchaseCSV(){
   try {
     const data = getFilteredPurchases();
-    const headers = ['PurId','Status','GIANo','PurchaseDate','FromName','Shape','Weight_Carat','Color','Clarity','Flor','Cut','Pol','Sym','Measur','LessPct','PerCarat_USD','Cost_USD','FX_Rate','Total_INR','BType','BillPct','PaymentDays','Broker','Operator','Type'];
+    const headers = ['PurId','Status','Type','GIANo','PurchaseDate','FromName','Shape','Weight_Carat','Color','Clarity','Flor','Cut','Pol','Sym','Measur','LessPct','PerCarat_USD','Cost_USD','FX_Rate','Total_INR','BType','BillPct','PaymentDays','Broker','Operator'];
     const rows = [headers.join(',')];
     data.forEach(p => {
       const isSold = (globalStore.sales||[]).some(s=>String(s.PurId).trim()===String(p.PurId).trim()) || String(p.Status).toUpperCase()==='SOLD';
       const row = [
-        p.PurId, isSold ? 'SOLD' : 'IN STOCK', p.GIANo, p.PurchaseDate, p.FromName, p.Shape, p.Size, p.Color, p.Quality, p.Flor, p.Cut, p.Pol, p.Sym, p.Measur, p.Less !== undefined ? p.Less : 0, p.PerCarat, p.DAmount, p.Rate, p.IndAmount, p.BType, p.BillPct || 0, p.PaymentDay, p.Broker, p.User, p.Type || 'IGI'
+        p.PurId, isSold ? 'SOLD' : 'IN STOCK', p.Type || 'IGI', p.GIANo, p.PurchaseDate, p.FromName, p.Shape, p.Size, p.Color, p.Quality, p.Flor, p.Cut, p.Pol, p.Sym, p.Measur, p.Less !== undefined ? p.Less : 0, p.PerCarat, p.DAmount, p.Rate, p.IndAmount, p.BType, p.BillPct || 0, p.PaymentDay, p.Broker, p.User
       ].map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(',');
       rows.push(row);
     });
@@ -1172,13 +1176,14 @@ function exportPurchaseExcel(){
   try {
     const data = getFilteredPurchases();
     let html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"></head><body><table border="1">';
-    const headers = ['PurId','Status','GIA / Lot No','Date','Supplier','Shape','Weight (ct)','Color','Clarity','Flor.','Cut','Pol.','Sym.','Measur','Less %','PerCarat ($)','Cost ($)','Rate (₹)','Total (₹)','BType','Bill %','Days','Broker','Operator','Type'];
+    const headers = ['PurId','Status','Type','GIA / Lot No','Date','Supplier','Shape','Weight (ct)','Color','Clarity','Flor.','Cut','Pol.','Sym.','Measur','Less %','PerCarat ($)','Cost ($)','Rate (₹)','Total (₹)','BType','Bill %','Days','Broker','Operator'];
     html += '<tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr>';
     data.forEach(p => {
       const isSold = (globalStore.sales||[]).some(s=>String(s.PurId).trim()===String(p.PurId).trim()) || String(p.Status).toUpperCase()==='SOLD';
       html += '<tr>';
       html += `<td>${p.PurId||''}</td>`;
       html += `<td>${isSold ? 'SOLD' : 'IN STOCK'}</td>`;
+      html += `<td>${p.Type||'IGI'}</td>`;
       html += `<td>${p.GIANo||''}</td>`;
       html += `<td>${p.PurchaseDate||''}</td>`;
       html += `<td>${p.FromName||''}</td>`;
@@ -1201,7 +1206,6 @@ function exportPurchaseExcel(){
       html += `<td>${p.PaymentDay||''}</td>`;
       html += `<td>${p.Broker||''}</td>`;
       html += `<td>${p.User||''}</td>`;
-      html += `<td>${p.Type||'IGI'}</td>`;
       html += '</tr>';
     });
     html += '</table></body></html>';
@@ -1300,13 +1304,14 @@ function exportReportToExcel(){
     html += '<th colspan="12" style="background:#059669;color:#fff;text-align:center;">OUTBOUND SALES DISPATCH & PERFORMANCE</th></tr>';
 
     const headers = [
-      'GIA No','Pur Date','From Name','Size (ct)','Shape','Color','Quality','Flor.','Cut','Pol.','Sym.','Measur','Less %','PerCarat ($)','Cost ($)','Rate (₹)','IndAmount (₹)','BType','Payment Days','Broker','Pur Operator','Type',
+      'Type','GIA No','Pur Date','From Name','Size (ct)','Shape','Color','Quality','Flor.','Cut','Pol.','Sym.','Measur','Less %','PerCarat ($)','Cost ($)','Rate (₹)','IndAmount (₹)','BType','Payment Days','Broker','Pur Operator',
       'Sale Date','Client Name','Country','Sale PerCarat ($)','Sale Less %','Sale Final ($)','Advance Paid ($)','Due Amount ($)','Remark','Sale Operator','Net Profit ($)','Profit %'
     ];
     html += '<tr>' + headers.map((h, i) => `<th class="${i >= 22 ? 'th-sale' : ''}">${h}</th>`).join('') + '</tr>';
 
     applySort(currentReportData, 'report').forEach(r => {
       html += '<tr>';
+      html += `<td>${r.Type||'IGI'}</td>`;
       html += `<td>${r.GIANo||''}</td>`;
       html += `<td>${r.PurchaseDate||''}</td>`;
       html += `<td>${r.FromName||''}</td>`;
@@ -1328,7 +1333,6 @@ function exportReportToExcel(){
       html += `<td>${r.PaymentDay||''}</td>`;
       html += `<td>${r.Broker||''}</td>`;
       html += `<td>${r.PurUser||''}</td>`;
-      html += `<td>${r.Type||'IGI'}</td>`;
       html += `<td>${r.SaleDate||''}</td>`;
       html += `<td>${r.ClientName||''}</td>`;
       html += `<td>${r.Country||''}</td>`;
@@ -1611,14 +1615,32 @@ function selectPurchaseRowForEdit(purId) {
 }
 
 function clearPurchaseForm() {
-  el('purchaseForm').reset();
+  const form = el('purchaseForm');
+  if (form) form.reset();
   el('p-PurId').value = '';
-  if (el('p-Type')) el('p-Type').value = '';
+  if (el('p-Type')) el('p-Type').value = 'IGI';
+  if (el('p-GIANo')) el('p-GIANo').value = '';
+  if (el('p-FromName')) el('p-FromName').value = '';
+  if (el('p-Size')) el('p-Size').value = '';
+  if (el('p-Shape')) el('p-Shape').value = 'ROUND';
+  if (el('p-Color')) el('p-Color').value = '';
+  if (el('p-Quality')) el('p-Quality').value = '';
+  if (el('p-Flor')) el('p-Flor').value = 'NONE';
+  if (el('p-Cut')) el('p-Cut').value = '';
+  if (el('p-Pol')) el('p-Pol').value = '';
+  if (el('p-Sym')) el('p-Sym').value = '';
+  if (el('p-Measur')) el('p-Measur').value = '';
+  if (el('p-Less')) el('p-Less').value = '0';
+  if (el('p-PerCarat')) el('p-PerCarat').value = '';
+  if (el('p-Rate')) el('p-Rate').value = '';
+  if (el('p-BType')) el('p-BType').value = 'CASH';
+  if (el('p-BillPct')) el('p-BillPct').value = '';
+  if (el('p-PaymentDay')) el('p-PaymentDay').value = '';
+  if (el('p-Broker')) el('p-Broker').value = '';
   el('p-Status').value = 'IN STOCK';
   el('p-PurchaseDate').value = localISO(new Date());
-  el('p-Broker').value = '';
   el('p-User').value = globalStore.currentUser;
-  clearFieldErrors(el('purchaseForm'));
+  clearFieldErrors(form);
 
   setText('p-DAmount-display', fmtUsd(0));
   setText('p-IndAmount-display', fmtInr(0));
@@ -1632,9 +1654,15 @@ function clearPurchaseForm() {
   const saveText = el('purchaseSaveBtnText');
   if (saveText) saveText.innerText = 'Save Inbound Record';
 
-  applyPurchaseDefaults();
-  if (el('p-Type') && !el('p-Type').value) el('p-Type').value = 'IGI';
+  onBTypeChange();
+  calculatePurchaseMath();
   clearRowHighlights();
+
+  // Focus the first intake field immediately for rapid sequential data entry
+  const firstField = el('p-Type') || el('p-GIANo');
+  if (firstField) {
+    try { firstField.focus(); } catch(e) {}
+  }
 }
 
 function duplicateLastPurchase() {
@@ -1989,6 +2017,7 @@ function renderReportTable(data) {
 
   rBody.innerHTML = applySort(data, 'report').map(safeRow).map(r => `
       <tr class="hover-row">
+        <td>${r.Type ? `<span class="type-badge type-${String(r.Type).toLowerCase().replace(/[^a-z]/g,'')}">${esc(r.Type)}</span>` : '<span class="muted">–</span>'}</td>
         <td style="font-weight:600;" class="font-mono">${r.PurchaseMissing ? '⚠ missing ' + esc(r.PurId) : esc(r.GIANo)}</td>
         <td>${esc(r.PurchaseDate)}</td>
         <td style="font-weight:600;">${esc(r.FromName)}</td>
@@ -2010,7 +2039,6 @@ function renderReportTable(data) {
         <td class="tabular-nums">${dash(r.PaymentDay)}</td>
         <td>${dash(r.Broker)}</td>
         <td>${dash(r.PurUser)}</td>
-        <td>${r.Type ? `<span class="type-badge type-${String(r.Type).toLowerCase().replace(/[^a-z]/g,'')}">${esc(r.Type)}</span>` : '<span class="muted">–</span>'}</td>
         <td style="font-weight:600; color:var(--emerald-700);">${esc(r.SaleDate)}</td>
         <td style="font-weight:700;">${esc(r.ClientName)}</td>
         <td><span class="chip">${dash(r.Country)}</span></td>
@@ -2077,7 +2105,7 @@ function exportReportToCSV() {
   }
 
   const line1 = ',,,,,,,,,,,,,,,,,,,,,PURCHASE,,,,,,,,,,,,SALE,,,,,,,,,,,';
-  const line2 = 'GIA No,Purchase Date,From Name,Size,Shape,Color,Quality,Flor.,Cut,Pol.,Sym.,Measur,Less,PerCarat,DAmount,Rate,IndAmount,BType,PaymentDay,Broker,Pur User,Type,Date,ClientName,Country,SalePerCarat,SaleLess,SaleDFinal,ADV D AMT,DUE AMT,SaleRemark,Sale User,SaleDProfit,Profit %';
+  const line2 = 'Type,GIA No,Purchase Date,From Name,Size,Shape,Color,Quality,Flor.,Cut,Pol.,Sym.,Measur,Less,PerCarat,DAmount,Rate,IndAmount,BType,PaymentDay,Broker,Pur User,Date,ClientName,Country,SalePerCarat,SaleLess,SaleDFinal,ADV D AMT,DUE AMT,SaleRemark,Sale User,SaleDProfit,Profit %';
 
   const escapeCSV = val => {
     if (val === undefined || val === null) return '';
@@ -2089,9 +2117,9 @@ function exportReportToCSV() {
   };
 
   const rows = applySort(currentReportData, 'report').map(r => [
-    r.GIANo, r.PurchaseDate, r.FromName, r.Size, r.Shape, r.Color, r.Quality, r.Flor, r.Cut,
+    r.Type || 'IGI', r.GIANo, r.PurchaseDate, r.FromName, r.Size, r.Shape, r.Color, r.Quality, r.Flor, r.Cut,
     r.Pol, r.Sym, r.Measur, r.Less, r.PerCarat, r.DAmount, r.Rate, r.IndAmount, r.BType,
-    r.PaymentDay, r.Broker, r.PurUser, r.Type || 'IGI', r.SaleDate, r.ClientName, r.Country, r.SalePerCarat,
+    r.PaymentDay, r.Broker, r.PurUser, r.SaleDate, r.ClientName, r.Country, r.SalePerCarat,
     r.SaleLess, r.SaleDFinal, r.AdvDAmt, r.DueAmt, r.SaleRemark, r.SaleUser, r.SaleDProfit, r.ProfitPct
   ].map(escapeCSV).join(','));
 
