@@ -1,0 +1,2325 @@
+<!-- File: index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Diamond Ledger Pro | Enterprise Management System</title>
+  
+  <!-- Inter Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================================================= */
+    /* 1. DESIGN SYSTEM & CSS VARIABLES                          */
+    /* ========================================================= */
+    :root {
+      /* Brand Color Palette */
+      --brand-50: #eff6ff;
+      --brand-100: #dbeafe;
+      --brand-200: #bfdbfe;
+      --brand-500: #3b82f6;
+      --brand-600: #2563eb;
+      --brand-700: #1d4ed8;
+      --brand-900: #1e3a8a;
+
+      /* Slate & Neutral Palette */
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+
+      /* Semantic Accents */
+      --emerald-50: #ecfdf5;
+      --emerald-100: #d1fae5;
+      --emerald-500: #10b981;
+      --emerald-600: #059669;
+      --emerald-700: #047857;
+
+      --rose-50: #fff1f2;
+      --rose-100: #ffe4e6;
+      --rose-500: #f43f5e;
+      --rose-600: #e11d48;
+      --rose-700: #be123c;
+
+      --amber-50: #fffbeb;
+      --amber-100: #fef3c7;
+      --amber-200: #fde68a;
+      --amber-500: #f59e0b;
+      --amber-600: #d97706;
+      --amber-700: #b45309;
+      --emerald-200: #a7f3d0;
+      --emerald-900: #064e3b;
+      --rose-200: #fecdd3;
+      --brand-300: #93c5fd;
+
+      --indigo-50: #eef2ff;
+      --indigo-600: #4f46e5;
+      --blue-200: #bfdbfe;
+      --purple-100: #f3e8ff;
+      --purple-700: #7e22ce;
+      --cyan-100: #cffafe;
+      --cyan-700: #0e7490;
+
+      /* Surface & Elevation */
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-hover: #f1f5f9;
+      --bg-input: #ffffff;
+      --border-subtle: #e2e8f0;
+      --border-focus: #3b82f6;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      
+      --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+
+      --radius-sm: 6px;
+      --radius-md: 9px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+    }
+
+    [data-theme="dark"] {
+      --slate-50: #0f172a;
+      --slate-100: #1e293b;
+      --slate-200: #334155;
+      --slate-300: #475569;
+      --slate-400: #64748b;
+      --slate-500: #94a3b8;
+      --slate-600: #cbd5e1;
+      --slate-700: #e2e8f0;
+      --slate-800: #f1f5f9;
+      --slate-900: #f8fafc;
+
+      --brand-50: #172554;
+      --brand-100: #1e3a8a;
+      --brand-200: #1d4ed8;
+      --brand-500: #3b82f6;
+      --brand-600: #60a5fa;
+      --brand-700: #93c5fd;
+      --brand-900: #dbeafe;
+
+      --emerald-50: #022c22;
+      --emerald-100: #064e3b;
+      --emerald-500: #10b981;
+      --emerald-600: #34d399;
+      --emerald-700: #6ee7b7;
+      --emerald-900: #d1fae5;
+
+      --rose-50: #4c0519;
+      --rose-100: #881337;
+      --rose-500: #f43f5e;
+      --rose-600: #fb7185;
+      --rose-700: #fda4af;
+
+      --amber-50: #451a03;
+      --amber-100: #78350f;
+      --amber-500: #f59e0b;
+      --amber-600: #fbbf24;
+      --amber-700: #fde68a;
+
+      --blue-100: #1e3a8a;
+      --blue-700: #93c5fd;
+
+      --bg-body: #0b1120;
+      --bg-card: #151f32;
+      --bg-hover: #1e293b;
+      --bg-input: #0b1120;
+      --border-subtle: #243247;
+      --border-focus: #3b82f6;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Reset & Base Rules */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-size: 13px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Type Badges */
+    .type-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .type-igi { background: var(--blue-100); color: var(--blue-700); }
+    .type-gia { background: var(--emerald-100); color: var(--emerald-700); }
+    .type-loose { background: var(--amber-100); color: var(--amber-700); }
+    .type-other { background: var(--slate-200); color: var(--slate-700); }
+
+    /* Dark mode overrides */
+    [data-theme="dark"] input,
+    [data-theme="dark"] select,
+    [data-theme="dark"] textarea {
+      background: var(--bg-input) !important;
+      color: var(--text-primary) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] input:focus,
+    [data-theme="dark"] select:focus,
+    [data-theme="dark"] textarea:focus {
+      background-color: var(--bg-input) !important;
+      border-color: var(--brand-500) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] input[readonly] {
+      background-color: var(--slate-100) !important;
+      color: var(--slate-500) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] .table-container,
+    [data-theme="dark"] .sidebar,
+    [data-theme="dark"] .form-section-card {
+      background: var(--bg-card) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] .terminal-calc-box {
+      background: linear-gradient(180deg, #172554, #0f172a) !important;
+      border-color: #1e3a8a !important;
+    }
+    [data-theme="dark"] .linked-card.locked {
+      background: #172554 !important;
+      border-color: #2563eb !important;
+    }
+    [data-theme="dark"] .table-header-pane {
+      background-color: var(--bg-card) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] .table-title {
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .table-search-input {
+      background: var(--bg-input) !important;
+      color: var(--text-primary) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] .table-search-input:focus {
+      background: var(--bg-input) !important;
+      border-color: var(--brand-500) !important;
+    }
+    [data-theme="dark"] .scrollable-area {
+      background: var(--bg-card) !important;
+    }
+    [data-theme="dark"] table thead th {
+      background: var(--slate-100) !important;
+      color: var(--text-secondary) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] table tbody td {
+      border-color: var(--border-subtle) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] tbody tr:hover,
+    [data-theme="dark"] .hover-row:hover {
+      background: var(--bg-hover) !important;
+    }
+    [data-theme="dark"] tbody tr.selected-row,
+    [data-theme="dark"] tbody tr.selected-row td {
+      background: rgba(59, 130, 246, 0.22) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] table.sticky-cols thead th:first-child {
+      background: var(--slate-100) !important;
+      color: var(--text-secondary) !important;
+    }
+    [data-theme="dark"] table.sticky-cols tbody td:first-child {
+      background: var(--bg-card) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] table.sticky-cols tbody tr:hover td:first-child {
+      background: var(--bg-hover) !important;
+    }
+    [data-theme="dark"] table.sticky-cols tbody tr.selected-row td:first-child {
+      background: rgba(59, 130, 246, 0.3) !important;
+    }
+    [data-theme="dark"] th.sortable:hover {
+      background: var(--bg-hover) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .tab-btn {
+      color: var(--text-secondary);
+    }
+    [data-theme="dark"] .tab-btn:hover {
+      background: var(--bg-hover) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .tab-btn.active {
+      background: var(--bg-card) !important;
+      color: var(--brand-700) !important;
+      box-shadow: var(--shadow-sm);
+    }
+    [data-theme="dark"] .tab-btn.active svg {
+      stroke: var(--brand-500) !important;
+    }
+    [data-theme="dark"] .btn-secondary {
+      background: var(--bg-card) !important;
+      color: var(--text-primary) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] .btn-secondary:hover {
+      background: var(--bg-hover) !important;
+      border-color: var(--slate-400) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .icon-btn {
+      background: var(--bg-card) !important;
+      color: var(--text-secondary) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] .icon-btn:hover {
+      background: var(--bg-hover) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .filter-pills {
+      background: var(--bg-input) !important;
+      border: 1px solid var(--border-subtle);
+    }
+    [data-theme="dark"] .pill-btn {
+      color: var(--text-secondary) !important;
+    }
+    [data-theme="dark"] .pill-btn:hover {
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .pill-btn.active {
+      background: var(--bg-hover) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .kpi-card {
+      background: var(--bg-card) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] .kpi-card:hover {
+      border-color: var(--slate-400) !important;
+    }
+    [data-theme="dark"] .kpi-title {
+      color: var(--text-secondary) !important;
+    }
+    [data-theme="dark"] .kpi-val {
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .report-group-th-purchase {
+      background: linear-gradient(180deg, #172554, #1e3a8a) !important;
+      color: #bfdbfe !important;
+      border-bottom: 2px solid #3b82f6 !important;
+    }
+    [data-theme="dark"] .report-group-th-sale {
+      background: linear-gradient(180deg, #022c22, #064e3b) !important;
+      color: #a7f3d0 !important;
+      border-bottom: 2px solid #10b981 !important;
+    }
+    [data-theme="dark"] .modal-content {
+      background: var(--bg-card) !important;
+      color: var(--text-primary) !important;
+      border-color: var(--border-subtle) !important;
+    }
+    [data-theme="dark"] .developer-watermark strong {
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] ::-webkit-scrollbar-thumb {
+      background: #334155;
+    }
+    [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+    [data-theme="dark"] .lg-wrap {
+      background: var(--bg-body) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .lg-card,
+    [data-theme="dark"] .lg-steps {
+      background: var(--bg-card) !important;
+      border-color: var(--border-subtle) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .lg-btn {
+      background: var(--bg-card) !important;
+      border-color: var(--border-subtle) !important;
+      color: var(--text-primary) !important;
+    }
+    [data-theme="dark"] .lg-note {
+      background: var(--bg-body) !important;
+      border-color: var(--border-subtle) !important;
+      color: var(--text-secondary) !important;
+    }
+
+    /* Validation States */
+    .input-error {
+      border-color: var(--rose-500) !important;
+      box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1) !important;
+    }
+    .error-message {
+      color: var(--rose-600);
+      font-size: 11px;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 1024px) {
+      body { overflow: auto; }
+      main { overflow: auto; }
+      .tab-content { overflow: auto; }
+      .upper-panel { flex-direction: column; height: auto; }
+      .sidebar { width: 100% !important; height: auto !important; }
+      .table-container { min-width: 0; }
+      .scrollable-area { overflow-x: auto; }
+      .scrollable-area table { min-width: 800px; }
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 0 12px; height: auto; min-height: 60px; flex-wrap: wrap; }
+      .nav-tabs { order: 3; width: 100%; margin-top: 8px; }
+      .nav-tab { font-size: 11px; padding: 6px 10px; }
+      .table-header-pane { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .search-box-wrap { width: 100%; }
+      .table-search-input { width: 100%; }
+      .filter-pills { flex-wrap: wrap; }
+      .form-row-2, .form-row-3 { grid-template-columns: 1fr; }
+      .terminal-calc-row { flex-direction: column; }
+    }
+
+    /* Numbers font styling for perfect tabular alignment */
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+      font-family: 'Inter', monospace;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ========================================================= */
+    /* 2. TOP EXECUTIVE NAVIGATION BAR                           */
+    /* ========================================================= */
+    header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border-subtle);
+      height: 60px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-xs);
+      z-index: 40;
+      flex-shrink: 0;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-gem {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 17px;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-name .version-pill {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      background: var(--brand-50);
+      color: var(--brand-700);
+      border-radius: var(--radius-full);
+      border: 1px solid var(--brand-200);
+    }
+
+    .brand-status {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--slate-500);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--emerald-500);
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.15); }
+    }
+
+    /* Segmented Tab Navigation */
+    .nav-tabs {
+      display: flex;
+      background: var(--slate-100);
+      padding: 4px;
+      border-radius: var(--radius-lg);
+      gap: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      padding: 7px 18px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--slate-600);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    .tab-btn svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 2;
+      opacity: 0.75;
+      transition: opacity 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--slate-900);
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: var(--brand-700);
+      box-shadow: var(--shadow-sm);
+      font-weight: 700;
+    }
+
+    .tab-btn.active svg {
+      opacity: 1;
+      stroke: var(--brand-600);
+    }
+
+    /* User Profile Pill */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px 4px 5px;
+      background: var(--slate-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .user-pill:hover {
+      background: var(--slate-100);
+      border-color: var(--slate-300);
+    }
+
+    .user-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .user-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--slate-700);
+    }
+
+    /* ========================================================= */
+    /* 3. MAIN APPLICATION CONTAINER & VIEWPORT                   */
+    /* ========================================================= */
+    main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .tab-content {
+      display: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .tab-content.active { display: flex !important; }
+    .tab-content.flex-col { flex-direction: column; }
+
+    /* Split Screen Layouts */
+    .sidebar {
+      width: 440px;
+      background-color: var(--bg-card);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      flex-shrink: 0;
+      padding: 16px 20px;
+    }
+
+    .main-feed {
+      flex: 1;
+      background-color: var(--bg-body);
+      padding: 16px 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .upper-panel {
+      flex: 1.15;
+      min-height: 0;
+      padding: 14px 18px;
+      display: flex;
+      gap: 16px;
+      background-color: var(--bg-body);
+    }
+
+    .lower-panel {
+      flex: 0.85;
+      min-height: 0;
+      border-top: 1px solid var(--border-subtle);
+      padding: 12px 18px;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-card);
+    }
+
+    /* ========================================================= */
+    /* 4. LUXURY FORM CONTROLS & GROUPINGS                       */
+    /* ========================================================= */
+    .section-title-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--slate-100);
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .form-section-card {
+      background: var(--slate-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+
+    .form-section-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid transparent;
+      letter-spacing: 0.02em;
+    }
+    .badge.primary { background: var(--brand-50); color: var(--brand-700); border-color: var(--brand-200); }
+    .badge.modified { background: var(--amber-50); color: var(--amber-700); border-color: var(--amber-200); }
+    .badge.stock-green { background: var(--emerald-50); color: var(--emerald-700); border-color: var(--emerald-200); }
+    .badge.stock-gray { background: var(--slate-100); color: var(--slate-600); border-color: var(--slate-200); }
+    .badge.danger { background: var(--rose-50); color: var(--rose-700); border-color: var(--rose-200); }
+
+    .form-group { margin-bottom: 8px; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+    .form-row-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+
+    label {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--slate-600);
+      margin-bottom: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 7px 11px;
+      font-size: 12.5px;
+      color: var(--slate-900);
+      background-color: #ffffff;
+      transition: all 0.15s ease;
+      outline: none;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--brand-500);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+      background-color: #ffffff;
+    }
+
+    input[readonly] {
+      background-color: var(--slate-100);
+      color: var(--slate-600);
+      cursor: default;
+      border-color: var(--border-subtle);
+    }
+
+    /* Calculation Terminal Panels */
+    .terminal-calc-box {
+      background: linear-gradient(180deg, #f0f7ff, #e6f0fd);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    }
+
+    .terminal-calc-box.success {
+      background: linear-gradient(180deg, #f0fdf4, #e2f9ea);
+      border-color: #a7f3d0;
+    }
+
+    .terminal-calc-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: 10px;
+    }
+
+    .terminal-metric {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .terminal-metric-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--slate-500);
+      margin-bottom: 2px;
+    }
+
+    .terminal-metric-val {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--slate-900);
+    }
+
+    .terminal-metric-val.blue { color: var(--brand-700); }
+    .terminal-metric-val.green { color: var(--emerald-700); }
+    .terminal-metric-val.red { color: var(--rose-600); }
+
+    /* Linked Diamond Asset Card */
+    .linked-card {
+      background: var(--slate-50);
+      border: 1.5px dashed var(--slate-300);
+      border-radius: var(--radius-lg);
+      padding: 12px;
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .linked-card.locked {
+      background: #eff6ff;
+      border: 1.5px solid #93c5fd;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.06);
+    }
+
+    /* ========================================================= */
+    /* 5. INTERACTIVE BUTTONS & CONTROLS                         */
+    /* ========================================================= */
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      border: none;
+      padding: 9px 16px;
+      font-size: 12.5px;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .btn svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 2.2;
+    }
+
+    .btn:active { transform: translateY(1px); }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #2563eb, #1d4ed8);
+      color: white;
+      box-shadow: 0 1px 3px rgba(37, 99, 235, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(180deg, #1d4ed8, #1e40af);
+      box-shadow: 0 2px 5px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-success {
+      background: linear-gradient(180deg, #059669, #047857);
+      color: white;
+      box-shadow: 0 1px 3px rgba(5, 150, 105, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .btn-success:hover {
+      background: linear-gradient(180deg, #047857, #065f46);
+      box-shadow: 0 2px 5px rgba(5, 150, 105, 0.4);
+    }
+
+    .btn-danger {
+      background: linear-gradient(180deg, #dc2626, #b91c1c);
+      color: white;
+      box-shadow: 0 1px 3px rgba(220, 38, 38, 0.3);
+    }
+    .btn-danger:hover {
+      background: linear-gradient(180deg, #b91c1c, #991b1b);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--slate-700);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-xs);
+    }
+    .btn-secondary:hover {
+      background: var(--slate-50);
+      border-color: var(--slate-300);
+      color: var(--slate-900);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* Filter Pill Group */
+    .filter-pills {
+      display: flex;
+      background: var(--slate-100);
+      padding: 2px;
+      border-radius: var(--radius-md);
+      gap: 2px;
+    }
+
+    .pill-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--slate-600);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pill-btn.active {
+      background: white;
+      color: var(--slate-900);
+      box-shadow: var(--shadow-xs);
+      font-weight: 700;
+    }
+
+    /* ========================================================= */
+    /* 6. ENTERPRISE FINANCIAL DATA TABLES                       */
+    /* ========================================================= */
+    .table-container {
+      background: white;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      min-height: 0;
+    }
+
+    .table-header-pane {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .table-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .table-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--slate-900);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .search-box-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box-wrap svg {
+      position: absolute;
+      left: 10px;
+      width: 14px;
+      height: 14px;
+      color: var(--slate-400);
+      pointer-events: none;
+    }
+
+    .table-search-input {
+      padding: 6px 12px 6px 30px;
+      font-size: 12px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--slate-50);
+      width: 220px;
+      transition: all 0.2s ease;
+    }
+
+    .table-search-input:focus {
+      width: 260px;
+      background: white;
+      border-color: var(--brand-500);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .scrollable-area {
+      flex: 1;
+      overflow: auto;
+      min-height: 0;
+      background: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      text-align: left;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      background: #f8fafc;
+      color: var(--slate-600);
+      font-weight: 700;
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 10;
+    }
+
+    tbody td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--slate-100);
+      color: var(--slate-700);
+      font-weight: 500;
+      transition: background-color 0.1s ease;
+    }
+
+    tbody tr:hover {
+      background-color: #f8fafc;
+      cursor: pointer;
+    }
+
+    tbody tr.selected-row {
+      background-color: #eff6ff !important;
+    }
+
+    /* Dual Tone Group Header in Report Table */
+    .report-group-th-purchase {
+      background: linear-gradient(180deg, #eff6ff, #dbeafe) !important;
+      color: var(--brand-900) !important;
+      border-bottom: 2px solid #93c5fd !important;
+    }
+
+    .report-group-th-sale {
+      background: linear-gradient(180deg, #ecfdf5, #d1fae5) !important;
+      color: var(--emerald-900) !important;
+      border-bottom: 2px solid #6ee7b7 !important;
+    }
+
+    /* ========================================================= */
+    /* 7. EXECUTIVE KPI DASHBOARD (REPORT TAB)                   */
+    /* ========================================================= */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-shrink: 0;
+    }
+
+    .kpi-card {
+      background: white;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      box-shadow: var(--shadow-xs);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--slate-300);
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--slate-200);
+    }
+
+    .kpi-card.blue::before { background: linear-gradient(90deg, #3b82f6, #1d4ed8); }
+    .kpi-card.green::before { background: linear-gradient(90deg, #10b981, #059669); }
+    .kpi-card.red::before { background: linear-gradient(90deg, #f43f5e, #e11d48); }
+    .kpi-card.amber::before { background: linear-gradient(90deg, #f59e0b, #d97706); }
+
+    .kpi-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .kpi-value {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--slate-900);
+      letter-spacing: -0.02em;
+    }
+
+    .kpi-value.green { color: var(--emerald-600); }
+    .kpi-value.blue { color: var(--brand-600); }
+    .kpi-value.red { color: var(--rose-600); }
+
+    /* ========================================================= */
+    /* 8. TOAST NOTIFICATIONS & FEEDBACK                         */
+    /* ========================================================= */
+    #toast {
+      position: fixed;
+      bottom: 44px;
+      right: 20px;
+      z-index: 100;
+      padding: 11px 18px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #toast.success { background-color: #065f46; border: 1px solid #059669; }
+    #toast.error { background-color: #991b1b; border: 1px solid #dc2626; }
+    #toast.info { background-color: #1e3a8a; border: 1px solid #2563eb; }
+
+    /* Developer Watermark */
+    .developer-watermark {
+      position: fixed;
+      bottom: 10px;
+      right: 18px;
+      z-index: 30;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--slate-500);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.02em;
+      user-select: none;
+      pointer-events: none;
+    }
+    .developer-watermark .brand-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--brand-600);
+      display: inline-block;
+    }
+    .developer-watermark strong {
+      color: var(--slate-800);
+      font-weight: 700;
+    }
+
+    /* Modal dialog */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(2px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-content {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar { height: 6px; width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    /* ========================================================= */
+    /* 9. RESPONSIVE BREAKPOINTS (TABLETS & MOBILE)              */
+    /* ========================================================= */
+    @media (max-width: 1024px) {
+      .sidebar { width: 380px; }
+      header { padding: 0 16px; }
+      .brand-titles .brand-status { display: none; }
+      .tab-btn { padding: 6px 12px; font-size: 12px; }
+      .kpi-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      body { height: auto; min-height: 100vh; overflow-y: auto; }
+      header { flex-direction: column; height: auto; padding: 12px 14px; gap: 10px; }
+      .header-actions { display: none; }
+      .nav-tabs { width: 100%; justify-content: space-between; }
+      .tab-btn { flex: 1; justify-content: center; padding: 6px 8px; font-size: 11.5px; }
+      
+      main { overflow: visible; height: auto; }
+      .tab-content { height: auto; flex-direction: column; overflow: visible; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-subtle); height: auto; }
+      .main-feed { height: 500px; padding: 12px; }
+      .upper-panel { flex-direction: column; height: auto; gap: 12px; padding: 12px; }
+      .lower-panel { height: 450px; padding: 12px; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  
+    /* ---- required-field highlight ---- */
+    input.field-error { border-color:#dc2626 !important; box-shadow:0 0 0 3px rgba(220,38,38,.14) !important; }
+
+    /* ---- sign-in page ---- */
+    .lg-wrap { position:fixed; inset:0; z-index:9999; display:flex; background:#f8fafc; font-family:inherit; }
+    .lg-brand { flex:1.15; position:relative; overflow:hidden; color:#fff; padding:56px 64px; display:flex; flex-direction:column; justify-content:space-between;
+      background: radial-gradient(900px 500px at 0% 0%, rgba(59,130,246,.55) 0%, transparent 60%), linear-gradient(160deg,#0a1530 0%,#0f2150 55%,#1c3d8f 100%); }
+    .lg-brand::after { content:""; position:absolute; right:-120px; bottom:-140px; width:520px; height:520px; opacity:.12;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M13 7h22l9 12L24 42 4 19z' fill='none' stroke='white' stroke-width='1'/%3E%3Cpath d='M4 19h40M17 7l7 12 7-12M24 42l-7-23M24 42l7-23' stroke='white' stroke-width='1' fill='none'/%3E%3C/svg%3E") center/contain no-repeat; }
+    .lg-logo { display:flex; align-items:center; gap:12px; font-weight:800; font-size:19px; letter-spacing:-.01em; position:relative; z-index:1; }
+    .lg-logo-mark { width:42px; height:42px; border-radius:12px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); display:flex; align-items:center; justify-content:center; }
+    .lg-hero { position:relative; z-index:1; max-width:470px; }
+    .lg-hero h1 { font-size:38px; line-height:1.12; font-weight:800; letter-spacing:-.025em; margin:0 0 14px; }
+    .lg-hero p { font-size:15px; line-height:1.6; color:rgba(255,255,255,.72); margin:0 0 28px; }
+    .lg-feats { list-style:none; padding:0; margin:0; display:grid; gap:14px; }
+    .lg-feats li { display:flex; gap:12px; align-items:flex-start; font-size:14px; color:rgba(255,255,255,.9); line-height:1.45; }
+    .lg-feats svg { flex-shrink:0; width:20px; height:20px; padding:3px; border-radius:6px; background:rgba(96,165,250,.25); stroke:#bfdbfe; margin-top:1px; }
+    .lg-foot-l { position:relative; z-index:1; font-size:12px; color:rgba(255,255,255,.5); }
+    .lg-panel { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; }
+    .lg-card { width:100%; max-width:392px; }
+    .lg-mobile-logo { display:none; align-items:center; gap:10px; font-weight:800; font-size:18px; color:#0f172a; margin-bottom:28px; }
+    .lg-card h2 { font-size:26px; font-weight:800; letter-spacing:-.02em; color:#0f172a; margin:0 0 6px; }
+    .lg-sub { font-size:14px; color:#64748b; margin:0 0 26px; line-height:1.5; }
+    .lg-google { width:100%; display:flex; align-items:center; justify-content:center; gap:12px; padding:13px 16px; font:inherit; font-size:14.5px; font-weight:600;
+      color:#1f2937; background:#fff; border:1px solid #cbd5e1; border-radius:10px; cursor:pointer; box-shadow:0 1px 2px rgba(15,23,42,.06); transition:all .15s; }
+    .lg-google:hover { border-color:#93c5fd; box-shadow:0 4px 14px rgba(37,99,235,.14); transform:translateY(-1px); }
+    .lg-google:disabled { opacity:.65; cursor:wait; transform:none; }
+    .lg-msg { min-height:18px; font-size:12.5px; color:#dc2626; margin:12px 0 0; text-align:center; }
+    .lg-steps { margin-top:26px; padding:18px; background:#fff; border:1px solid #e2e8f0; border-radius:12px; }
+    .lg-steps-t { font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:#94a3b8; margin-bottom:12px; }
+    .lg-step { display:flex; gap:12px; align-items:flex-start; font-size:13px; color:#334155; line-height:1.45; margin-bottom:11px; }
+    .lg-step:last-child { margin-bottom:0; }
+    .lg-step b { flex-shrink:0; width:22px; height:22px; border-radius:50%; background:#dbeafe; color:#1d4ed8; font-size:11.5px; display:flex; align-items:center; justify-content:center; }
+    .lg-secure { display:flex; align-items:center; justify-content:center; gap:7px; margin-top:20px; font-size:12px; color:#64748b; }
+    .lg-secure svg { width:14px; height:14px; stroke:#16a34a; }
+    .lg-credit { margin-top:26px; font-size:11.5px; color:#94a3b8; }
+    @media (max-width: 880px) { .lg-brand { display:none; } .lg-mobile-logo { display:flex; } .lg-wrap { overflow-y:auto; } }
+
+    /* ========================================================= */
+    /* 10. UX REFINEMENTS                                        */
+    /* ========================================================= */
+    .chip { font-weight: 600; font-size: 11px; background: var(--slate-100); padding: 2px 6px; border-radius: 4px; color: var(--slate-700); }
+    .lg-note { font-size: 11px; line-height: 1.5; color: #64748b; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 9px 11px; margin-top: 16px; }
+    .lg-note b { color: #334155; }
+
+    /* --- connection state --- */
+    .brand-status { gap: 6px; flex-wrap: wrap; }
+    .conn-state { font-weight: 600; color: var(--slate-600); }
+    .conn-sep { color: var(--slate-300); }
+    #sheet-link { color: var(--brand-600); font-weight: 600; text-decoration: none; }
+    #sheet-link:hover { text-decoration: underline; }
+    .status-dot.connected { background: var(--emerald-500); }
+    .status-dot.syncing { background: var(--amber-500); animation: pulse-dot .9s infinite ease-in-out; }
+    .status-dot.error { background: var(--rose-500); animation: none; box-shadow: 0 0 0 2px rgba(244, 63, 94, .18); }
+    .status-dot.readonly { background: var(--slate-400); animation: none; }
+    .badge.ro { background: var(--amber-50); color: var(--amber-700); border-color: var(--amber-200); }
+
+    .icon-btn { width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border-subtle); background: #fff; color: var(--slate-600); border-radius: 6px;
+      cursor: pointer; font-size: 13px; line-height: 1; padding: 0; }
+    .icon-btn:hover { background: var(--slate-50); color: var(--slate-900); border-color: var(--slate-300); }
+    .icon-btn.spin { animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* --- header menu --- */
+    .header-actions { position: relative; }
+    .menu-btn { display: none; }
+    .header-menu { display: flex; align-items: center; gap: 12px; }
+
+    /* --- collapsible form sections --- */
+    .form-section-card.collapsible .form-section-label { cursor: pointer; user-select: none; }
+    .form-section-card.collapsible .form-section-label .chev { margin-left: auto; font-size: 10px; color: var(--slate-400); transition: transform .18s ease; }
+    .form-section-card.collapsed .form-section-label { margin-bottom: 0; }
+    .form-section-card.collapsed .form-section-label .chev { transform: rotate(-90deg); }
+    .form-section-card.collapsed .section-body { display: none; }
+    .form-section-label:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; border-radius: 4px; }
+
+    /* --- signed money --- */
+    .money-neg { color: var(--rose-600) !important; font-weight: 700; }
+    .money-pos { color: var(--emerald-700) !important; font-weight: 700; }
+    .muted { color: var(--slate-400); }
+
+    /* --- sticky identifier column + stacked report headers --- */
+    table.sticky-cols thead th:first-child,
+    table.sticky-cols tbody td:first-child { position: sticky; left: 0; z-index: 6; background: #fff; }
+    table.sticky-cols thead th:first-child { z-index: 12; background: #f8fafc; }
+    table.sticky-cols tbody tr:hover td:first-child { background: #f8fafc; }
+    table.sticky-cols tbody tr.selected-row td:first-child { background: #eff6ff; }
+    table.sticky-cols tbody td:first-child::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 1px; background: var(--border-subtle); }
+    #tbl-report thead tr:first-child th { top: 0; z-index: 11; }
+    #tbl-report thead tr:nth-child(2) th { top: var(--report-gh, 32px); }
+
+    /* --- sorting --- */
+    th.sortable { cursor: pointer; user-select: none; }
+    th.sortable:hover { color: var(--slate-900); background: #eef2f7; }
+    th.sortable .sort-ind { opacity: .3; margin-left: 4px; font-size: 9px; }
+    th.sortable.sorted .sort-ind { opacity: 1; color: var(--brand-600); }
+    th.sortable:focus-visible { outline: 2px solid var(--brand-500); outline-offset: -2px; }
+    tbody tr.selected-row td { background: #eff6ff; }
+    tbody tr.kb-row td { background: rgba(59, 130, 246, .07); }
+
+    /* --- search --- */
+    .table-search-input, .table-search-input:focus { width: 220px; }
+    .search-box-wrap .search-clear { position: absolute; right: 5px; border: none; background: transparent;
+      color: var(--slate-400); cursor: pointer; font-size: 14px; line-height: 1; padding: 2px 5px; display: none; border-radius: 50%; }
+    .search-box-wrap .search-clear:hover { color: var(--slate-700); background: var(--slate-100); }
+    .search-box-wrap.has-value .search-clear { display: block; }
+
+    /* --- totals strip --- */
+    .totals-strip { display: flex; gap: 18px; align-items: center; padding: 7px 16px; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border-subtle); background: var(--slate-50); font-size: 11.5px; color: var(--slate-600); flex-shrink: 0; }
+    .totals-strip b { color: var(--slate-900); font-variant-numeric: tabular-nums; }
+    .totals-strip .ts-label { text-transform: uppercase; letter-spacing: .04em; font-size: 9.5px; font-weight: 700; color: var(--slate-500); }
+
+    /* --- empty + loading states --- */
+    .empty-state { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 30px 16px; text-align: center; }
+    .empty-state .es-icon { font-size: 20px; color: var(--slate-300); line-height: 1; }
+    .empty-state .es-title { font-size: 13px; font-weight: 700; color: var(--slate-700); }
+    .empty-state .es-sub { font-size: 11.5px; color: var(--slate-500); max-width: 360px; line-height: 1.5; }
+    .empty-state .es-cta { margin-top: 8px; flex: 0 0 auto; padding: 7px 14px; font-size: 11.5px; }
+    .skeleton-row td { padding: 12px 16px; }
+    .skel-bar { display: block; height: 9px; width: 100%; max-width: 560px; border-radius: 5px;
+      background: linear-gradient(90deg, #eef2f7 25%, #f8fafc 37%, #eef2f7 63%); background-size: 400% 100%;
+      animation: shimmer 1.2s ease-in-out infinite; }
+    @keyframes shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+
+    /* --- inline validation --- */
+    .field-msg { font-size: 10.5px; font-weight: 600; color: var(--rose-600); margin-top: 3px; }
+    label.field-error-label { color: var(--rose-600) !important; }
+
+    /* --- toast --- */
+    #toast { max-width: 380px; }
+    #toast .toast-ico { width: 17px; height: 17px; border-radius: 50%; background: rgba(255, 255, 255, .22);
+      display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
+    #toast .toast-msg { flex: 1; }
+    #toast .toast-x { border: none; background: transparent; color: inherit; opacity: .65; cursor: pointer;
+      font-size: 15px; line-height: 1; padding: 0 2px; }
+    #toast .toast-x:hover { opacity: 1; }
+
+    /* --- misc --- */
+    .jump-link { color: var(--brand-600); font-weight: 700; text-decoration: none; border-bottom: 1px dotted var(--brand-300); }
+    .jump-link:hover { color: var(--brand-700); border-bottom-style: solid; }
+    .stale-hint { display: none; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700;
+      color: var(--amber-700); background: var(--amber-50); border: 1px solid var(--amber-200);
+      padding: 3px 9px; border-radius: var(--radius-full); cursor: pointer; }
+    .stale-hint.show { display: inline-flex; }
+    .stale-hint:hover { background: var(--amber-100); }
+    *:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+    input:focus-visible, select:focus-visible, textarea:focus-visible { outline: none; }
+
+    /* --- mobile: keep Connect Sheet + operator reachable --- */
+    @media (max-width: 768px) {
+      .header-actions { display: flex !important; width: 100%; justify-content: flex-end; }
+      .menu-btn { display: inline-flex; }
+      .header-menu { display: none; position: absolute; right: 0; top: 32px; z-index: 60; min-width: 208px;
+        flex-direction: column; align-items: stretch; gap: 8px; padding: 10px; background: var(--bg-card);
+        border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+      .header-actions.open .header-menu { display: flex; }
+      .main-feed { height: auto !important; min-height: 380px; }
+      .lower-panel { height: auto !important; min-height: 340px; }
+      .btn-group { position: sticky; bottom: 0; background: var(--bg-card); padding: 10px 0 6px; z-index: 5;
+        box-shadow: 0 -8px 14px -10px rgba(15, 23, 42, .35); }
+      .table-search-input, .table-search-input:focus { width: 150px; }
+      .totals-strip { gap: 12px; font-size: 11px; }
+      .brand-status { font-size: 10.5px; }
+    }
+
+    /* --- print / PDF --- */
+    @media print {
+      @page { margin: 12mm; }
+      body { height: auto !important; overflow: visible !important; background: #fff; }
+      header, .nav-tabs, .header-actions, #toast, .modal-overlay, .sidebar, .developer-watermark,
+      .search-box-wrap, .filter-pills, #btn-print, #report-stale, .stale-hint, .totals-strip { display: none !important; }
+      main { overflow: visible !important; height: auto !important; }
+      .tab-content { display: none !important; }
+      #report-tab { display: block !important; padding: 0 !important; }
+      .kpi-grid { display: grid !important; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+      .kpi-card { break-inside: avoid; box-shadow: none; }
+      .table-container { border: none; box-shadow: none; }
+      .scrollable-area { overflow: visible !important; max-height: none !important; }
+      thead th { position: static !important; }
+      table { font-size: 8.5px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+    }
+  </style>
+  <script src="https://accounts.google.com/gsi/client"></script>
+</head>
+<body>
+
+  <!-- ========================================================= -->
+  <!-- HEADER & NAVIGATION                                      -->
+  <!-- ========================================================= -->
+  <header>
+    <div class="header-brand">
+      <div class="brand-gem">&#9670;</div>
+      <div class="brand-titles">
+        <div class="brand-name">
+          DIamond management 
+          <span class="version-pill">v2.5 Enterprise</span>
+        </div>
+        <div class="brand-status">
+          <span class="status-dot" id="conn-dot" aria-hidden="true"></span>
+          <span id="conn-state" class="conn-state">Connecting…</span>
+          <span class="conn-sep" aria-hidden="true">·</span>
+          <a id="sheet-link" href="#" target="_blank" rel="noopener" title="Open the connected Google Sheet">Open sheet ↗</a>
+          <button type="button" id="btn-refresh" class="icon-btn" onclick="refreshFromSheet()" title="Re-read all data from Google Sheets" aria-label="Refresh from Google Sheets">↻</button>
+          <span class="badge ro" id="ro-badge" style="display:none" title="Your Google account can view this sheet but not edit it">READ ONLY</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <nav class="nav-tabs" role="tablist" aria-label="Main sections">
+      <button onclick="switchTab('purchase-tab')" id="btn-purchase-tab" class="tab-btn active" role="tab" aria-selected="true">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        Purchase Inbound
+      </button>
+      <button onclick="switchTab('sale-tab')" id="btn-sale-tab" class="tab-btn" role="tab" aria-selected="false">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+        Sale Outbound
+      </button>
+      <button onclick="switchTab('report-tab')" id="btn-report-tab" class="tab-btn" role="tab" aria-selected="false">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Audit & Export
+      </button>
+    </nav>
+
+    <!-- ACTIONS -->
+    <div class="header-actions" id="header-actions" style="display:flex; align-items:center; gap:8px;">
+      <button type="button" id="btn-theme-toggle" class="icon-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle theme">🌙</button>
+      <button type="button" id="btn-help" class="icon-btn" onclick="openHelpModal()" title="Keyboard Shortcuts Help" aria-label="Help">?</button>
+      <button type="button" id="btn-menu" class="icon-btn menu-btn" onclick="toggleHeaderMenu()" aria-expanded="false" aria-label="More actions">⋯</button>
+      <div class="header-menu" id="header-menu">
+      <button type="button" class="btn btn-secondary" onclick="openSheetModal()" style="padding:6px 12px; font-size:11.5px; height:32px;" title="Link or change the Google Sheet">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:14px; height:14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+        Connect Sheet
+      </button>
+      <div class="user-pill" onclick="promptChangeUser()" title="Click to change active operator name">
+        <div class="user-avatar" id="header-user-avatar">S</div>
+        <span class="user-name" id="header-user-name">Keyur Zalavadiya</span>
+      </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- MAIN WORKSPACE VIEWPORT                                  -->
+  <!-- ========================================================= -->
+  <main>
+    <!-- File: PurchasePanel.html -->
+<section id="purchase-tab" class="tab-content active">
+  <!-- SIDEBAR INBOUND FORM -->
+  <div class="sidebar">
+    <div class="section-title-container">
+      <h2 class="section-title">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px; height:16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        Inbound Purchase
+      </h2>
+      <span id="pur-mode-badge" class="badge primary">✦ New Record</span>
+    </div>
+    
+    <form id="purchaseForm" onsubmit="handlePurchaseSubmit(event)" novalidate>
+      <input type="hidden" id="p-PurId" name="PurId">
+      <input type="hidden" id="p-Status" name="Status" value="IN STOCK">
+
+      <!-- SECTION 1: IDENTITY & VENDOR -->
+      <div class="form-section-card">
+        <div class="form-section-label">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:13px; height:13px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          1. Identity & Origin
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>GIA / Lot No *</label>
+            <input type="text" id="p-GIANo" name="GIANo" placeholder="e.g. 793647470" required class="font-mono">
+          </div>
+          <div class="form-group">
+            <label>Purchase Date *</label>
+            <input type="date" id="p-PurchaseDate" name="PurchaseDate" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>From Name (Supplier) *</label>
+          <input type="text" id="p-FromName" name="FromName" placeholder="e.g. KD or evermie" required>
+        </div>
+        <div class="form-group">
+          <label>Type *</label>
+          <input type="text" id="p-Type" name="Type" list="type-options" required style="font-weight:600;" placeholder="IGI" autocomplete="off" value="IGI">
+          <datalist id="type-options">
+            <option value="IGI">IGI</option>
+            <option value="GIA">GIA</option>
+            <option value="Loose">Loose</option>
+            <option value="other">other</option>
+          </datalist>
+        </div>
+      </div>
+
+      <!-- SECTION 2: 4CS & GRADING MATRIX -->
+      <div class="form-section-card">
+        <div class="form-section-label">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:13px; height:13px;"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          2. Gemological Matrix
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Carat Weight (Size) *</label>
+            <input type="number" step="0.001" id="p-Size" name="Size" placeholder="0.000" oninput="calculatePurchaseMath()" required class="tabular-nums" style="font-weight:700;">
+          </div>
+          <div class="form-group">
+            <label>Shape *</label>
+            <select id="p-Shape" name="Shape" required style="font-weight:600;">
+              <option value="ROUND">ROUND</option>
+              <option value="OVAL">OVAL</option>
+              <option value="PEAR">PEAR</option>
+              <option value="MARQUISE">MARQUISE</option>
+              <option value="EMERALD">EMERALD</option>
+              <option value="PRINCESS">PRINCESS</option>
+              <option value="CUSHION">CUSHION</option>
+              <option value="RADIANT">RADIANT</option>
+              <option value="HEART">HEART</option>
+              <option value="MIX SHAPE">MIX SHAPE</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label>Color</label>
+            <input type="text" id="p-Color" name="Color" list="color-options" autocomplete="off" placeholder="Select or type...">
+            <datalist id="color-options"><option value="D"><option value="E"><option value="F"><option value="G"><option value="H"></datalist>
+          </div>
+          <div class="form-group">
+            <label>Quality / Clarity</label>
+            <input type="text" id="p-Quality" name="Quality" list="clarity-options" autocomplete="off" placeholder="Select or type...">
+            <datalist id="clarity-options"><option value="FL"><option value="IF"><option value="VVS1"><option value="VVS2"><option value="VS1"><option value="VS2"></datalist>
+          </div>
+          <div class="form-group">
+            <label>Flor.</label>
+            <input type="text" id="p-Flor" name="Flor" placeholder="NONE">
+          </div>
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label>Cut</label>
+            <input type="text" id="p-Cut" name="Cut" placeholder="EX, ID...">
+          </div>
+          <div class="form-group">
+            <label>Pol.</label>
+            <input type="text" id="p-Pol" name="Pol" placeholder="EX">
+          </div>
+          <div class="form-group">
+            <label>Sym.</label>
+            <input type="text" id="p-Sym" name="Sym" placeholder="EX">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Measurements</label>
+          <input type="text" id="p-Measur" name="Measur" placeholder="e.g. 12.11*8.03*4.76 or 4MM*16PCS">
+        </div>
+      </div>
+
+      <!-- SECTION 3: VALUATION & MULTI-CURRENCY TERMINAL -->
+      <div class="form-section-card" style="background:var(--brand-50); border-color:var(--brand-200);">
+        <div class="form-section-label" style="color:var(--brand-700);">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:13px; height:13px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          3. Valuation & Rates
+        </div>
+        <div class="form-row-3">
+          <div class="form-group">
+            <label style="color:var(--brand-700);">Per Carat ($) *</label>
+            <input type="number" step="0.01" id="p-PerCarat" name="PerCarat" placeholder="0.00" oninput="calculatePurchaseMath()" required class="tabular-nums" style="font-weight:700;">
+          </div>
+          <div class="form-group">
+            <label style="color:var(--brand-700);">Less (%)</label>
+            <input type="number" step="0.01" id="p-Less" name="Less" placeholder="0" value="0" oninput="calculatePurchaseMath()" class="tabular-nums">
+          </div>
+          <div class="form-group">
+            <label style="color:var(--brand-700);">FX Rate (₹/$)</label>
+            <input type="number" step="0.01" id="p-Rate" name="Rate" placeholder="95.24" oninput="calculatePurchaseMath()" class="tabular-nums">
+          </div>
+        </div>
+
+        <!-- Terminal Output -->
+        <div class="terminal-calc-box" style="margin-bottom:0; margin-top:8px;">
+          <div class="terminal-calc-row">
+            <div class="terminal-metric">
+              <span class="terminal-metric-title">Dollar Cost ($)</span>
+              <span class="terminal-metric-val tabular-nums" id="p-BaseAmt-display">$0.00</span>
+            </div>
+            <div class="terminal-metric">
+              <span class="terminal-metric-title">Bill Charge ($)</span>
+              <span class="terminal-metric-val tabular-nums" id="p-BillAmt-display">$0.00</span>
+            </div>
+            <div class="terminal-metric">
+              <span class="terminal-metric-title">Total Amount ($)</span>
+              <span class="terminal-metric-val blue tabular-nums" id="p-DAmount-display">$0.00</span>
+              <input type="hidden" id="p-DAmount" name="DAmount">
+            </div>
+            <div class="terminal-metric">
+              <span class="terminal-metric-title">Total Amount (₹)</span>
+              <span class="terminal-metric-val tabular-nums" id="p-IndAmount-display">₹0</span>
+              <input type="hidden" id="p-IndAmount" name="IndAmount">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4: TERMS & OPERATOR -->
+      <div class="form-section-card">
+        <div class="form-section-label">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:13px; height:13px;"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          4. Settlement & Operator
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Payment Type</label>
+            <select id="p-BType" name="BType" onchange="onBTypeChange()">
+              <option value="CASH">CASH</option>
+              <option value="BILL">BILL</option>
+              <option value="MEMO">MEMO</option>
+              <option value="OTHER">OTHER</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Payment Days</label>
+            <input type="number" id="p-PaymentDay" name="PaymentDay" placeholder="e.g. 21" class="tabular-nums">
+          </div>
+        </div>
+        <!-- Bill charge: shown only when Payment Type = BILL -->
+        <div class="form-group" id="p-BillPct-group" style="display:none;">
+          <label>Bill Charge (%) &mdash; added on total amount</label>
+          <input type="number" step="0.01" min="0" max="100" id="p-BillPct" name="BillPct" list="bill-pct-options" placeholder="e.g. 1.5" oninput="calculatePurchaseMath()" class="tabular-nums" style="font-weight:700;">
+          <datalist id="bill-pct-options">
+            <option value="1.5">
+            <option value="2">
+            <option value="2.5">
+            <option value="3">
+          </datalist>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Broker (Optional)</label>
+            <input type="text" id="p-Broker" name="Broker" list="broker-options" autocomplete="off" placeholder="Select or type (optional)">
+            <datalist id="broker-options"><option value="Self"><option value="Broker"></datalist>
+            <datalist id="operator-options"></datalist>
+          </div>
+          <div class="form-group">
+            <label>Operator *</label>
+            <input type="text" id="p-User" name="User" placeholder="Operator Name" required style="font-weight:600;" list="operator-options" autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="btn-group">
+        <button type="submit" id="purchaseSaveBtn" class="btn btn-primary">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span id="purchaseSaveBtnText">Save Inbound Record</span>
+        </button>
+        <button type="button" id="purchaseDeleteBtn" onclick="deleteCurrentPurchase()" class="btn btn-danger" style="display:none; flex:0.4;">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          Delete
+        </button>
+        <button type="button" onclick="duplicateLastPurchase()" class="btn btn-secondary" style="flex:0.5;" title="Copy supplier, terms and rate from the last saved purchase">
+          Copy last
+        </button>
+        <button type="button" onclick="clearPurchaseForm()" class="btn btn-secondary" style="flex:0.4;">
+          Clear
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- RIGHT DATA FEED TABLE -->
+  <div class="main-feed">
+    <div class="table-container">
+      <div class="table-header-pane" style="flex-direction:column; align-items:stretch; gap:10px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <div class="table-title-wrap">
+            <span class="table-title">Inventory Vault</span>
+            <span class="badge primary tabular-nums" id="pur-count-badge">0 records</span>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <!-- Status Filter Pills -->
+            <div class="filter-pills">
+              <button class="pill-btn active" id="pur-filter-all" onclick="setPurchaseFilter('ALL')">All</button>
+              <button class="pill-btn" id="pur-filter-stock" onclick="setPurchaseFilter('STOCK')">In Stock</button>
+              <button class="pill-btn" id="pur-filter-sold" onclick="setPurchaseFilter('SOLD')">Sold</button>
+            </div>
+            <!-- Type Filter Pills -->
+            <div class="filter-pills">
+              <button class="pill-btn active" id="pur-type-all" onclick="setPurchaseTypeFilter('ALL')">All Type</button>
+              <button class="pill-btn" id="pur-type-igi" onclick="setPurchaseTypeFilter('IGI')">IGI</button>
+              <button class="pill-btn" id="pur-type-gia" onclick="setPurchaseTypeFilter('GIA')">GIA</button>
+              <button class="pill-btn" id="pur-type-loose" onclick="setPurchaseTypeFilter('Loose')">Loose</button>
+              <button class="pill-btn" id="pur-type-other" onclick="setPurchaseTypeFilter('other')">Other</button>
+            </div>
+
+            <!-- Search Box -->
+            <div class="search-box-wrap">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input type="text" id="pur-search" class="table-search-input" placeholder="Search GIA, vendor, shape..." autocomplete="off">
+            </div>
+            <button class="btn btn-secondary" onclick="toggleAdvancedFilter('purchase')" title="Advanced Filters" style="padding:6px 12px; height:32px;">Advanced</button>
+            <button class="btn btn-secondary" onclick="exportPurchaseCSV()" title="Export filtered purchases to CSV" style="padding:6px 12px; height:32px;">Export CSV</button>
+            <button class="btn btn-secondary" onclick="exportPurchaseExcel()" title="Export filtered purchases to Excel" style="padding:6px 12px; height:32px;">Export Excel</button>
+          </div>
+        </div>
+        <!-- Advanced Filters -->
+        <div id="adv-filter-purchase" style="display:none; background:var(--bg-body); padding:10px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); flex-wrap:wrap; gap:10px; align-items:end;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <label style="font-size:11px; font-weight:600;">From Date</label>
+            <input type="date" id="pur-adv-from" style="height:32px;">
+          </div>
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <label style="font-size:11px; font-weight:600;">To Date</label>
+            <input type="date" id="pur-adv-to" style="height:32px;">
+          </div>
+          <button class="btn btn-primary" onclick="applyAdvancedFilters('purchase')" style="padding:6px 14px; height:32px;">Apply</button>
+          <button class="btn btn-secondary" onclick="clearAdvancedFilters('purchase')" style="padding:6px 14px; height:32px;">Clear</button>
+        </div>
+      </div>
+
+      <div class="totals-strip" id="inv-summary" aria-live="polite"></div>
+
+      <div class="scrollable-area">
+        <table>
+          <thead>
+            <tr>
+              <th>PurId</th>
+              <th>Status</th>
+              <th>GIA / Lot No</th>
+              <th>Date</th>
+              <th>Supplier (From Name)</th>
+              <th>Shape</th>
+              <th style="text-align:right;">Weight</th>
+              <th>Color</th>
+              <th>Clarity</th>
+              <th style="text-align:right;">PerCarat</th>
+              <th style="text-align:right;">Cost ($)</th>
+              <th style="text-align:right;">Total Amount ($)</th>
+              <th style="text-align:right;">Rate (₹)</th>
+              <th style="text-align:right;">Total Amount (₹)</th>
+              <th>BType</th>
+              <th style="text-align:right;">Bill %</th>
+              <th>Days</th>
+              <th>Broker</th>
+              <th>Operator</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody id="purchaseTableBody">
+            <!-- Rendered by script -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- File: SalePanel.html -->
+<section id="sale-tab" class="tab-content flex-col">
+  <!-- UPPER ROW: Left = Sale Entry Form, Right = Available Stock -->
+  <div class="upper-panel">
+    
+    <!-- LEFT SIDEBAR: SALE FORM -->
+    <div class="sidebar" style="height:100%; border:1px solid var(--border-subtle); border-radius:var(--radius-lg); width:460px; box-shadow:var(--shadow-xs);">
+      <div class="section-title-container">
+        <h2 class="section-title">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px; height:16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          Record Sales Dispatch
+        </h2>
+        <span id="sale-mode-badge" class="badge stock-green">✦ New Dispatch</span>
+      </div>
+      
+      <!-- INTERACTIVE LINKED ASSET CARD -->
+      <div id="linked-purchase-card" class="linked-card">
+        <div style="display:flex; align-items:center; gap:8px; color:var(--slate-500);">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px; height:20px; flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div>
+            <div style="font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.04em;">No Asset Linked</div>
+            <div style="font-size:11.5px;">Click any open inventory stone from the matrix on the right.</div>
+          </div>
+        </div>
+      </div>
+
+      <form id="saleForm" onsubmit="handleSaleSubmit(event)" novalidate>
+        <input type="hidden" id="s-SaleId" name="SaleId">
+        <input type="hidden" id="s-PurId" name="PurId" required>
+        
+        <!-- CLIENT & DISPATCH DATES -->
+        <div class="form-section-card" style="margin-bottom:8px;">
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>Sale Date *</label>
+              <input type="date" id="s-Date" name="Date" required>
+            </div>
+            <div class="form-group">
+              <label>Client Name *</label>
+              <input type="text" id="s-ClientName" name="ClientName" placeholder="e.g. Hala or Diana" required style="font-weight:600;">
+            </div>
+            <div class="form-group">
+              <label>Country *</label>
+              <input type="text" id="s-Country" name="Country" list="country-options" placeholder="Select or type country..." required>
+              <datalist id="country-options">
+                <option value="USA">
+                <option value="UK">
+                <option value="Thailand">
+                <option value="Dubai">
+                <option value="Hongkong">
+              </datalist>
+            </div>
+          </div>
+
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>Sale Per Carat ($) *</label>
+              <input type="number" step="0.01" id="s-SalePerCarat" name="SalePerCarat" placeholder="0.00" oninput="onSalePerCaratInput()" onblur="syncSaleTotals()" required class="tabular-nums" style="font-weight:700;" title="Type either this rate or the Total Amount — the other fills in automatically.">
+            </div>
+            <div class="form-group">
+              <label>Total Amount ($)</label>
+              <input type="number" step="0.01" id="s-TotalAmount" placeholder="0.00" oninput="onSaleTotalInput()" onblur="syncSaleTotals()" class="tabular-nums" style="font-weight:700;" autocomplete="off" title="Carats × price per carat. Type a total here and the per-carat rate is calculated for you.">
+            </div>
+            <div class="form-group">
+              <label>Sale Less (%)</label>
+              <input type="number" step="0.01" id="s-SaleLess" name="SaleLess" placeholder="0" value="0" oninput="calculateSaleMath()" class="tabular-nums">
+            </div>
+          </div>
+        </div>
+
+        <!-- LIVE DEAL FINANCIAL TERMINAL -->
+        <div class="terminal-calc-box success" style="margin-bottom:8px;">
+          <div class="form-section-label" style="color:var(--emerald-900); margin-bottom:8px;">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:13px; height:13px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            Deal Profitability & Settlement
+          </div>
+          <div class="terminal-calc-row">
+            <div class="terminal-metric">
+              <span class="terminal-metric-title">Final Sale ($)</span>
+              <span class="terminal-metric-val green tabular-nums" id="s-SaleDFinal-display">$0.00</span>
+              <input type="hidden" id="s-SaleDFinal" name="SaleDFinal">
+            </div>
+            <div class="terminal-metric">
+              <span class="terminal-metric-title">Net Profit ($)</span>
+              <span class="terminal-metric-val blue tabular-nums" id="s-SaleDProfit-display">$0.00</span>
+              <input type="hidden" id="s-SaleDProfit" name="SaleDProfit">
+            </div>
+            <div class="terminal-metric">
+              <span class="terminal-metric-title">Margin (%)</span>
+              <span class="terminal-metric-val green tabular-nums" id="s-ProfitPct-display">0.0%</span>
+              <input type="hidden" id="s-ProfitPct" name="ProfitPct">
+            </div>
+            <div class="terminal-metric">
+              <span class="terminal-metric-title">Due Balance ($)</span>
+              <span class="terminal-metric-val red tabular-nums" id="s-DueAmt-display">$0.00</span>
+              <input type="hidden" id="s-DueAmt" name="DueAmt">
+            </div>
+          </div>
+        </div>
+
+        <!-- SETTLEMENT & REMARKS -->
+        <div class="form-section-card" style="margin-bottom:8px;">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Advance Paid ($ ADV D AMT)</label>
+              <input type="number" step="0.01" id="s-AdvDAmt" name="AdvDAmt" placeholder="0.00" value="0" oninput="calculateSaleMath()" class="tabular-nums">
+            </div>
+            <div class="form-group">
+              <label>Operator Signature</label>
+              <input type="text" id="s-User" name="User" placeholder="Your Name" required style="font-weight:600;" list="operator-options" autocomplete="off">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Sale Remark / Destination Notes</label>
+            <input type="text" id="s-SaleRemark" name="SaleRemark" placeholder="e.g. Official Nguyen, payment terms...">
+          </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="btn-group">
+          <button type="submit" id="saleSaveBtn" class="btn btn-success">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span id="saleSaveBtnText">Finalize Sale</span>
+          </button>
+          <button type="button" id="saleDeleteBtn" onclick="deleteCurrentSale()" class="btn btn-danger" style="display:none; flex:0.4;">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            Cancel Sale
+          </button>
+          <button type="button" onclick="clearSaleForm()" class="btn btn-secondary" style="flex:0.35;">
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- RIGHT PANEL: AVAILABLE STOCK MATRIX -->
+    <div class="table-container">
+      <div class="table-header-pane">
+        <div class="table-title-wrap">
+          <span class="table-title" style="color:var(--emerald-700);">Available Stock Vault</span>
+          <span class="badge stock-green tabular-nums" id="stock-count-badge">0 available</span>
+        </div>
+        <div class="search-box-wrap">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="stock-search" class="table-search-input" placeholder="Filter available inventory..." autocomplete="off">
+        </div>
+      </div>
+      <div class="scrollable-area">
+        <table>
+          <thead>
+            <tr>
+              <th>PurId</th>
+              <th>GIA / Lot No</th>
+              <th>Supplier</th>
+              <th>Shape</th>
+              <th style="text-align:right;">Weight</th>
+              <th>Color</th>
+              <th>Clarity</th>
+              <th style="text-align:right;">PerCarat</th>
+              <th style="text-align:right;">Cost ($)</th>
+              <th style="text-align:right;">FX Rate</th>
+              <th style="text-align:right;">Inbound (₹)</th>
+            </tr>
+          </thead>
+          <tbody id="saleStockLookupBody">
+            <!-- Rendered by script -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOWER ROW: SALES REGISTER FEED -->
+  <div class="lower-panel">
+    <div class="table-container" style="height:100%;">
+      <div class="table-header-pane" style="flex-direction:column; align-items:stretch; gap:10px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <div class="table-title-wrap">
+            <span class="table-title">Live Dispatched Register (Click row to Edit or Void)</span>
+            <span class="badge primary tabular-nums" id="sales-count-badge">0 sales</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <div class="search-box-wrap">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input type="text" id="sales-search" class="table-search-input" placeholder="Search sales by client, ID..." autocomplete="off">
+            </div>
+            <button class="btn btn-secondary" onclick="toggleAdvancedFilter('sales')" title="Advanced Filters" style="padding:6px 12px; height:32px;">Advanced</button>
+            <button class="btn btn-secondary" onclick="exportSalesCSV()" title="Export filtered sales to CSV" style="padding:6px 12px; height:32px;">Export CSV</button>
+            <button class="btn btn-secondary" onclick="exportSalesExcel()" title="Export filtered sales to Excel" style="padding:6px 12px; height:32px;">Export Excel</button>
+          </div>
+        </div>
+        <!-- Advanced Filters -->
+        <div id="adv-filter-sales" style="display:none; background:var(--bg-body); padding:10px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); flex-wrap:wrap; gap:10px; align-items:end;">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <label style="font-size:11px; font-weight:600;">From Date</label>
+            <input type="date" id="sales-adv-from" style="height:32px;">
+          </div>
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <label style="font-size:11px; font-weight:600;">To Date</label>
+            <input type="date" id="sales-adv-to" style="height:32px;">
+          </div>
+          <button class="btn btn-primary" onclick="applyAdvancedFilters('sales')" style="padding:6px 14px; height:32px;">Apply</button>
+          <button class="btn btn-secondary" onclick="clearAdvancedFilters('sales')" style="padding:6px 14px; height:32px;">Clear</button>
+        </div>
+      </div>
+      <div class="scrollable-area">
+        <table>
+          <thead>
+            <tr>
+              <th>SaleId</th>
+              <th>PurId</th>
+              <th>Date</th>
+              <th>Client (Buyer)</th>
+              <th>Country</th>
+              <th style="text-align:right;">Sale PerCarat</th>
+              <th style="text-align:right;">Gross Invoice ($)</th>
+              <th style="text-align:right;">Advance ($)</th>
+              <th style="text-align:right;">Due Balance ($)</th>
+              <th style="text-align:right;">Net Profit ($)</th>
+              <th style="text-align:right;">Margin %</th>
+              <th>Remark</th>
+              <th>Operator</th>
+            </tr>
+          </thead>
+          <tbody id="saleRegisterTableBody">
+            <!-- Rendered by script -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- File: ReportPanel.html -->
+<section id="report-tab" class="tab-content flex-col" style="padding:16px 20px; gap:14px; background:var(--bg-body);">
+  
+  <!-- EXECUTIVE FILTER TOOLBAR -->
+  <div style="background:var(--bg-card); border:1px solid var(--border-subtle); padding:14px 18px; border-radius:var(--radius-lg); display:flex; align-items:center; gap:12px; box-shadow:var(--shadow-xs); flex-wrap:wrap; flex-shrink:0;">
+    
+    <div style="display:flex; align-items:center; gap:8px;">
+      <div>
+        <label>From Date</label>
+        <input type="date" id="rep-FromDate" style="width:145px;">
+      </div>
+      <div>
+        <label>To Date</label>
+        <input type="date" id="rep-ToDate" style="width:145px;">
+      </div>
+    </div>
+
+    <!-- Quick Presets -->
+    <div style="display:flex; flex-direction:column;">
+      <label>Quick Presets</label>
+      <div class="filter-pills">
+        <button type="button" class="pill-btn" onclick="applyDatePreset('THIS_MONTH')">This Month</button>
+        <button type="button" class="pill-btn" onclick="applyDatePreset('LAST_MONTH')">Last Month</button>
+        <button type="button" class="pill-btn" onclick="applyDatePreset('YTD')">YTD</button>
+        <button type="button" class="pill-btn" onclick="applyDatePreset('ALL')">All Time</button>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="display:flex; align-items:flex-end; gap:8px; margin-top:auto; flex-wrap:wrap;">
+      <button onclick="fetchDateReport()" class="btn btn-primary" style="padding:8px 18px;">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        Generate Report
+      </button>
+      <button onclick="exportReportToCSV()" class="btn btn-success" style="padding:8px 18px;">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        Export CSV
+      </button>
+      <button onclick="exportReportToExcel()" class="btn btn-success" style="padding:8px 18px;">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        Export Excel
+      </button>
+      <button onclick="printReport()" id="btn-print" class="btn btn-secondary" style="padding:8px 16px;" title="Print or save the report as PDF">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zM7 9V4h10v5"/></svg>
+        Print
+      </button>
+    </div>
+
+    <!-- Search within report -->
+    <div style="margin-left:auto; display:flex; flex-direction:column;">
+      <label>Search Report</label>
+      <div class="search-box-wrap">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" id="rep-search" class="table-search-input" placeholder="Search client, GIA, vendor..." autocomplete="off">
+      </div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE FINANCIAL ANALYTICS (KPI CARDS) -->
+  <div class="kpi-grid" id="kpi-summary-grid">
+    <div class="kpi-card blue">
+      <div class="kpi-title">Stones Sold</div>
+      <div class="kpi-value tabular-nums" id="kpi-stones">0</div>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-title">Total Carats</div>
+      <div class="kpi-value tabular-nums" id="kpi-carats">0.00 ct</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-title">Total Cost ($)</div>
+      <div class="kpi-value tabular-nums" id="kpi-cost">$0.00</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-title">Inbound INR (₹)</div>
+      <div class="kpi-value tabular-nums" id="kpi-inr">₹0</div>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-title">Sales Revenue ($)</div>
+      <div class="kpi-value blue tabular-nums" id="kpi-sales">$0.00</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-title">Net Profit ($)</div>
+      <div class="kpi-value green tabular-nums" id="kpi-profit">$0.00</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-title">Overall Margin</div>
+      <div class="kpi-value green tabular-nums" id="kpi-margin">0.0%</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-title">Due Balance ($)</div>
+      <div class="kpi-value red tabular-nums" id="kpi-due">$0.00</div>
+    </div>
+  </div>
+
+  <!-- FULL ENTERPRISE AUDIT TABLE (TWO-TIER 33 COLUMNS) -->
+  <div class="table-container">
+    <div class="table-header-pane">
+      <div class="table-title-wrap">
+        <span class="table-title">Consolidated Purchase & Outbound Dispatch Ledger</span>
+        <span class="badge primary tabular-nums" id="report-summary-badge">0 records</span>
+        <div class="stale-hint" id="report-stale" onclick="fetchDateReport()" title="Data changed since this report was generated">⟳ Data changed — refresh</div>
+      </div>
+      <div style="font-size:11px; color:var(--slate-500); font-weight:500;">
+        Scroll horizontally to inspect complete 33 parameters
+      </div>
+    </div>
+    <div class="scrollable-area">
+      <table>
+        <thead>
+          <!-- TIER 1: GROUP HEADER -->
+          <tr>
+            <th colspan="22" class="report-group-th-purchase" style="text-align:center; font-size:11px; padding:6px 0;">
+              &#9670; INBOUND PURCHASE SPECIFICATIONS (22 PARAMETERS)
+            </th>
+            <th colspan="12" class="report-group-th-sale" style="text-align:center; font-size:11px; padding:6px 0;">
+              &#9670; OUTBOUND SALES DISPATCH & PERFORMANCE (12 PARAMETERS)
+            </th>
+          </tr>
+          <!-- TIER 2: EXACT FIELD HEADERS -->
+          <tr>
+            <!-- PURCHASE SECTION -->
+            <th>GIA No</th>
+            <th>Pur. Date</th>
+            <th>From Name</th>
+            <th style="text-align:right;">Size</th>
+            <th>Shape</th>
+            <th>Color</th>
+            <th>Quality</th>
+            <th>Flor.</th>
+            <th>Cut</th>
+            <th>Pol.</th>
+            <th>Sym.</th>
+            <th>Measur</th>
+            <th style="text-align:right;">Less %</th>
+            <th style="text-align:right;">PerCarat</th>
+            <th style="text-align:right;">DAmount ($)</th>
+            <th style="text-align:right;">Rate (₹)</th>
+            <th style="text-align:right;">IndAmount (₹)</th>
+            <th>BType</th>
+            <th>Days</th>
+            <th>Broker</th>
+            <th>Pur. User</th>
+            <th>Type</th>
+            <!-- SALE SECTION -->
+            <th>Sale Date</th>
+            <th>Client Name</th>
+            <th>Country</th>
+            <th style="text-align:right;">Sale PerCarat</th>
+            <th style="text-align:right;">Sale Less %</th>
+            <th style="text-align:right;">Sale DFinal ($)</th>
+            <th style="text-align:right;">ADV D AMT</th>
+            <th style="text-align:right;">DUE AMT</th>
+            <th>Sale Remark</th>
+            <th>Sale User</th>
+            <th style="text-align:right;">Sale DProfit</th>
+            <th style="text-align:right;">Profit %</th>
+          </tr>
+        </thead>
+        <tbody id="reportTableBody">
+          <tr>
+            <td colspan="34" style="text-align:center; padding:36px; color:var(--slate-400); font-style:italic;">
+              Click "Generate Report" to inspect consolidated audit metrics.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <!-- CONNECT SHEET MODAL -->
+  <div class="modal-overlay" id="sheetModal">
+    <div class="modal-content">
+      <h3 style="font-size:15px; font-weight:700; margin-bottom:6px;">Connect Google Sheet</h3>
+      <p style="font-size:12px; color:var(--slate-500); margin-bottom:12px;">Paste the link or ID of the Google Sheet shared by your employee or created by you.</p>
+      <input type="text" id="modal-sheet-input" style="margin-bottom:14px;" placeholder="https://docs.google.com/spreadsheets/d/...">
+      <div class="btn-group">
+        <button type="button" id="btn-save-sheet" class="btn btn-primary" onclick="saveSheetConnection()">Connect & Sync</button>
+        <button type="button" class="btn btn-secondary" onclick="closeSheetModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- USER SWITCH MODAL -->
+  <div class="modal-overlay" id="userModal">
+    <div class="modal-content">
+      <h3 style="font-size:15px; font-weight:700; margin-bottom:6px;">Switch Active Operator</h3>
+      <p style="font-size:12px; color:var(--slate-500); margin-bottom:14px;">All transactions logged will carry this employee's signature tag.</p>
+      <input type="text" id="modal-user-input" style="margin-bottom:14px;" placeholder="Enter operator name (e.g. Keyur Zalavadiya)">
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="saveNewUserFromModal()">Set Active User</button>
+        <button type="button" class="btn btn-secondary" onclick="closeUserModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRM MODAL -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal-content">
+      <h3 id="confirm-title" style="font-size:15px; font-weight:700; margin-bottom:6px;">Please confirm</h3>
+      <p id="confirm-body" style="font-size:12px; color:var(--slate-500); margin-bottom:14px; line-height:1.55;"></p>
+      <div class="btn-group">
+        <button type="button" id="confirm-ok" class="btn btn-danger" onclick="closeConfirm(true)">Confirm</button>
+        <button type="button" class="btn btn-secondary" onclick="closeConfirm(false)">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST FEEDBACK -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- CLIENT SCRIPTS -->
+  <!-- GOOGLE SIGN-IN SCREEN -->
+  <div id="login-overlay" class="lg-wrap">
+    <div class="lg-brand">
+      <div class="lg-logo"><div class="lg-logo-mark"><svg viewBox="0 0 48 48" width="26" height="26"><path d="M13 7h22l9 12L24 42 4 19z" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><path d="M4 19h40M17 7l7 12 7-12M24 42l-7-23M24 42l7-23" stroke="#fff" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-opacity=".9"/></svg></div>Diamond Ledger</div>
+      <div class="lg-hero">
+        <h1>Run your diamond business with clarity.</h1>
+        <p>Track every stone from purchase to sale &mdash; costs, bill charges, profit and dues &mdash; in one clean workspace.</p>
+        <ul class="lg-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><span>Live profit and margin on every sale, in USD and INR</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><span>Inventory, purchases, dispatches and reports together</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><span>Your data stays in your company&rsquo;s own Google Sheet</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><span>Owner controls who can edit and who can only view</span></li>
+        </ul>
+      </div>
+      <div class="lg-foot-l">&copy; Diamond Ledger &middot; Portfolio Management System</div>
+    </div>
+
+    <div class="lg-panel">
+      <div class="lg-card">
+        <div class="lg-mobile-logo"><svg viewBox="0 0 48 48" width="30" height="30"><path d="M13 7h22l9 12L24 42 4 19z" fill="#2563eb" fill-opacity=".18" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round"/><path d="M4 19h40M17 7l7 12 7-12M24 42l-7-23M24 42l7-23" stroke="#2563eb" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-opacity=".9"/></svg>Diamond Ledger</div>
+        <h2>Welcome back</h2>
+        <p class="lg-sub">Sign in with the Google account your company owner shared the sheet with.</p>
+        <button type="button" id="login-btn" class="lg-google" onclick="gemSignIn(this)">
+          <svg width="19" height="19" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          <span id="login-btn-text">Continue with Google</span>
+        </button>
+        <p id="login-msg" class="lg-msg"></p>
+
+        <div class="lg-steps">
+          <div class="lg-steps-t">How it works</div>
+          <div class="lg-step"><b>1</b><span>Sign in with your Google account</span></div>
+          <div class="lg-step"><b>2</b><span>Paste the Google Sheet link your owner gave you</span></div>
+          <div class="lg-step"><b>3</b><span>Start recording purchases and sales</span></div>
+        </div>
+        <div class="lg-secure"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Secure Google sign-in &middot; no passwords stored</div>
+        <p class="lg-note">If Google shows “This app isn’t verified”, click <b>Advanced</b> → <b>Continue</b>. The owner must share the sheet with your Gmail address.</p>
+        <div class="lg-credit">Developed by KD Zalavadiya</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYBOARD SHORTCUTS HELP MODAL -->
+  <div id="helpModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content" style="max-width:500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Keyboard Shortcuts</h3>
+        <button class="modal-close" onclick="closeHelpModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <table style="width:100%;">
+          <tr><td style="padding:6px; font-weight:600;">/</td><td style="padding:6px;">Focus search in current tab</td></tr>
+          <tr><td style="padding:6px; font-weight:600;">Ctrl+S / Cmd+S</td><td style="padding:6px;">Save current form</td></tr>
+          <tr><td style="padding:6px; font-weight:600;">Escape</td><td style="padding:6px;">Clear/Close modals</td></tr>
+          <tr><td style="padding:6px; font-weight:600;">Arrow Keys</td><td style="padding:6px;">Navigate table rows</td></tr>
+          <tr><td style="padding:6px; font-weight:600;">Enter</td><td style="padding:6px;">Edit selected row</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="gas-shim.js"></script>
+  <script src="Code.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
